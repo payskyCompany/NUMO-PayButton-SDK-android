@@ -83,7 +83,7 @@ public class PayButton {
 
         switch (productionStatus) {
             case PRODUCTION:
-                ApiLinks.PAYMENT_LINK = ApiLinks.CUBE;
+                ApiLinks.PAYMENT_LINK = ApiLinks.NPG_LINK;
                 break;
             case GREY:
                 ApiLinks.PAYMENT_LINK = ApiLinks.TNPG_LINK;

@@ -16,9 +16,9 @@ public class ApiLinks {
 
 
     public static final String TNPG_LINK = "https://tnpg.moamalat.net/";
-    public static final String CUBE = "https://cube.paysky.io/";
+    public static final String NPG_LINK = "https://npg.moamalat.net/";
     public static final String PACE_PAY = "https://adcb.paysky.io/";
 
-    public static String PAYMENT_LINK = CUBE;
+    public static String PAYMENT_LINK = NPG_LINK;
 }
 
