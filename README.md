@@ -189,6 +189,6 @@ in your project, encrypt them before save them in project.
 **PaySky Company** - (https://www.paysky.io)
 
 ## Sample Project
-**https://github.com/payskyCompany/payButton.git**
+**https://github.com/payskyCompany/NUMO-PayButton-SDK-android/tree/master/app**
 
 
