@@ -1,7 +1,5 @@
 apply plugin: 'com.android.library'
 // for Android libraries
-//apply plugin: 'maven-publish'
-//group = 'com.github.paysky'
 apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.paysky'
 
@@ -38,6 +36,7 @@ android {
         targetCompatibility JavaVersion.VERSION_1_7
     }
 }
+
 
 
 dependencies {
