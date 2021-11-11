@@ -1,0 +1,200 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TableLayout xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/data_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context="io.paysky.ui.fragment.manualpayment.ManualPaymentFragment">
+
+            <TextView
+                android:layout_marginTop="@dimen/_7sdp"
+                android:layout_marginBottom="@dimen/_7sdp"
+                android:gravity="center"
+                android:text="@string/enter_card_data"
+                android:textColor="#282C2E" />
+
+
+            <TableRow>
+
+                <ImageView
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_22sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:scaleType="fitXY"
+                    android:visibility="gone" />
+            </TableRow>
+
+            <LinearLayout
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/edittext_drawable"
+                android:gravity="center">
+
+                <View
+                    android:layout_width="@dimen/_8sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/accentColor"
+                    android:visibility="gone" />
+
+                <io.paysky.ui.custom.CardEditText
+                    android:id="@+id/card_number_editText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/edittext_drawable"
+                    android:digits="01234 56789"
+                    android:hint="@string/card_number"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:maxLength="19"
+                    android:maxLines="1"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:singleLine="true"
+                    android:text=""
+                    android:textColorHint="?android:textColorHint"
+                    android:textDirection="ltr"
+                    android:textSize="@dimen/_14ssp" />
+
+                <ImageView
+                    android:id="@+id/card_type_imageView"
+                    android:layout_width="@dimen/_30sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:layout_marginEnd="@dimen/_8sdp"
+                    android:src="@drawable/card_icon" />
+
+                <ImageView
+                    android:id="@+id/scan_camera_imageView"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/camera_icon"
+                    app:tint="#EAC604" />
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/card_owner_name_editText"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_36sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/edittext_drawable"
+                android:hint="@string/name_on_card"
+                android:imeOptions="actionNext"
+                android:maxLines="1"
+                android:paddingStart="8dp"
+                android:singleLine="true"
+                android:textColorHint="?android:textColorHint"
+                android:textSize="@dimen/_13ssp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_marginEnd="@dimen/_3sdp"
+                    android:layout_weight="2"
+                    android:background="@drawable/rectengle_drawable"
+                    android:gravity="center">
+
+                    <io.paysky.ui.custom.ExpiryDate
+                        android:id="@+id/expire_date_editText"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_36sdp"
+                        android:layout_marginEnd="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/expire_date"
+                        android:imeOptions="actionNext"
+                        android:inputType="number"
+                        android:maxLength="5"
+                        android:maxLines="1"
+                        android:paddingStart="8dp"
+                        android:paddingEnd="8dp"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColorHint="?android:textColorHint"
+                        android:textSize="@dimen/_14ssp" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:src="@drawable/expiration_icon"
+                        app:tint="#EAC604" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/linearCVV"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_36sdp"
+                    android:layout_marginStart="@dimen/_3sdp"
+                    android:layout_weight="3"
+                    android:background="@drawable/rectengle_drawable"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <EditText
+                        android:id="@+id/ccv_editText"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_weight="1"
+                        android:background="@null"
+                        android:hint="@string/cvc"
+                        android:imeOptions="actionNext"
+                        android:inputType="date"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textAlignment="viewStart"
+                        android:textColorHint="#696E72" />
+
+                    <ImageView
+                        android:layout_width="@dimen/_22sdp"
+                        android:layout_height="@dimen/_22sdp"
+                        android:layout_marginEnd="@dimen/_8sdp"
+                        android:src="@drawable/cvc_icon"
+                        app:tint="#EAC604" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/proceed_button"
+                android:layout_height="@dimen/_34sdp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:layout_marginEnd="@dimen/_8sdp"
+                android:background="@drawable/baybutton_proceed_button"
+                android:text="@string/proceed"
+                android:textColor="@android:color/white" />
+
+        </TableLayout>
+
+    </LinearLayout>
+
+</ScrollView>

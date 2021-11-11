@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="merchant_id">رقم التاجر</string>
+    <string name="terminal_id">نقطة البيع</string>
+    <string name="amount">المبلغ</string>
+    <string name="currency">العملة</string>
+    <string name="pay">ادفع</string>
+    <string name="testing_type">Testing Environment</string>
+    <string name="environment_type">الرابط</string>
+    <string name="required">حقل مطلوب</string>
+    <string name="secure_hash_key">SecureHash</string>
+    <string name="english">English</string>
+
+</resources>
