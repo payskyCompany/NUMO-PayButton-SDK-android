@@ -1,8 +1,6 @@
-## Version 2.0.5 adding Support for AndroidX 
+## Numo Button SDK
 
-## PaySky Button SDK
-
-The purpose of this SDK to help programmers to use PaySky payment SDK .
+The purpose of this SDK to help programmers to use Numo payment SDK .
 
 ## Getting Started
 
@@ -36,16 +34,16 @@ Example:-
                 }
 			  
 3- in your build.gradle file in app level in dependencies{} add :-    
-implementation 'com.github.payskyCompany:paybutton-sdk:2.0.5'
+implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0'
+
 
 Example:-
 dependencies {
-      implementation 'com.github.payskyCompany:paybutton-sdk:2.0.5'
+      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0'
 }
 
 4- Sync your project.
 
-Note:- version 2.0.5 may not be the last version check Releases in github to get latest version.
 ```
 
 ### Using SDK
