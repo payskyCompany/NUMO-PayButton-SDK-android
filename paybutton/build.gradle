@@ -1,7 +1,9 @@
 apply plugin: 'com.android.library'
 // for Android libraries
-apply plugin: 'maven-publish'
+//apply plugin: 'maven-publish'
 //group = 'com.github.paysky'
+apply plugin: 'com.github.dcendents.android-maven'
+group = 'com.github.paysky'
 
 android {
     compileSdkVersion 29
@@ -69,17 +71,4 @@ dependencies {
 
     implementation 'io.card:android-sdk:5.5.1'
 
-}
-
-afterEvaluate {
-    publishing {
-        publications {
-            release(MavenPublication) {
-                groupId = 'com.github.paysky'
-                artifactId = 'numopaybutton'
-                version = '1.0'
-                artifact(bundleReleaseAar)
-            }
-        }
-    }
 }
