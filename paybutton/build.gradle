@@ -1,7 +1,6 @@
 apply plugin: 'com.android.library'
 // for Android libraries
-apply plugin: 'com.github.dcendents.android-maven'
-group = 'com.github.paysky'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 29
@@ -38,7 +37,6 @@ android {
 }
 
 
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'androidx.appcompat:appcompat:1.2.0'
@@ -70,4 +68,23 @@ dependencies {
 
     implementation 'io.card:android-sdk:5.5.1'
 
+}
+
+
+// Because the components are created only during the afterEvaluate phase, you must
+// configure your publications using the afterEvaluate() lifecycle method.
+afterEvaluate {
+    publishing {
+        publications {
+            mavenAndroid(MavenPublication) {
+                afterEvaluate {
+                    from components.release
+
+                    groupId = 'com.github.paysky'
+                    artifactId = project.name
+                    version = "1.0.1"
+                }
+            }
+        }
+    }
 }
