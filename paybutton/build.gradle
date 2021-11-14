@@ -18,21 +18,21 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    afterEvaluate {
-        tasks.matching {
-            it.name.startsWith('dex')
-        }.each { dx ->
-            if (dx.additionalParameters == null) {
-                dx.additionalParameters = ['--multi-dex']
-            } else {
-                dx.additionalParameters += '--multi-dex'
-            }
-        }
-    }
+//    afterEvaluate {
+//        tasks.matching {
+//            it.name.startsWith('dex')
+//        }.each { dx ->
+//            if (dx.additionalParameters == null) {
+//                dx.additionalParameters = ['--multi-dex']
+//            } else {
+//                dx.additionalParameters += '--multi-dex'
+//            }
+//        }
+//    }
     buildToolsVersion '28.0.3'
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_7
-        targetCompatibility JavaVersion.VERSION_1_7
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
@@ -76,15 +76,34 @@ dependencies {
 afterEvaluate {
     publishing {
         publications {
-            mavenAndroid(MavenPublication) {
-                afterEvaluate {
-                    from components.release
+            // Creates a Maven publication called "release".
+            release(MavenPublication) {
+                // Applies the component for the release build variant.
+                from components.release
 
-                    groupId = 'com.github.paysky'
-                    artifactId = project.name
-                    version = "1.0.1"
-                }
+                // You can then customize attributes of the publication as shown below.
+                groupId = 'com.github.paysky'
+                artifactId = 'numopaybtton'
+                version = '1.0.0'
             }
+
         }
     }
 }
+// Because the components are created only during the afterEvaluate phase, you must
+// configure your publications using the afterEvaluate() lifecycle method.
+//afterEvaluate {
+//    publishing {
+//        publications {
+//            mavenAndroid(MavenPublication) {
+//                afterEvaluate {
+//                    from components.release
+//
+//                    groupId = 'com.github.paysky'
+//                    artifactId = "numopaybutton"
+//                    version = "1.0.1"
+//                }
+//            }
+//        }
+//    }
+//}
