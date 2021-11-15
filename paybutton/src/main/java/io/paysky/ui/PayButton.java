@@ -37,6 +37,16 @@ public class PayButton {
     private ProgressDialog progressDialog;
     //    private boolean isProduction =false;
     private AllURLsStatus productionStatus;
+    private String lang = "en";
+
+    public void setLang(String lang) {
+        this.lang = lang;
+        ApiConnection.LANG = lang;
+    }
+
+    public String getLang() {
+        return lang;
+    }
 
     public void setProductionStatus(AllURLsStatus productionStatus) {
         this.productionStatus = productionStatus;
@@ -158,7 +168,7 @@ public class PayButton {
                 paymentData.amountFormatted = amount + "";
                 paymentData.paymentMethod = response.paymentMethod;
                 paymentData.secureHashKey = merchantSecureHash;
-                String[] c = {paymentData.currencyCode };
+                String[] c = {paymentData.currencyCode};
                 CurrencyCode currencyCode = CurrencyHelper.getCurrencyCode(context, c[0]);
                 if (currencyCode != null) {
                     paymentData.currencyName = currencyCode.currencyShortName;

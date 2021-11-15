@@ -12,6 +12,8 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 import io.paysky.data.model.SuccessfulCardTransaction;
 import io.paysky.data.model.SuccessfulWalletTransaction;
 import io.paysky.exception.TransactionException;
@@ -70,7 +72,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         secureHashKeyEditText = findViewById(R.id.secureHash_editText);
         merchantIdEditText.setText("10014656535");
         terminalIdEditText.setText("16253625");
-        secureHashKeyEditText.setText("44FB9957F4C0B81307CB004A6F4F7FE75B9C64E2988D9B75FCC9700138C40A6C");
+        secureHashKeyEditText.setText("2e708b4657eed7cc2a18c631b353a940fe47980197dd8c22296ceb13c60df94a");
         payTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                 payButton.setMerchantSecureHash(secureHashKey);
                 payButton.setTransactionReferenceNumber(AppUtils.generateRandomNumber());
                 payButton.setProductionStatus(list_to_URLS[item_position]);
+                payButton.setLang(LocaleHelper.getLocale());
                 payButton.createTransaction(new PayButton.PaymentTransactionCallback() {
                     @Override
                     public void onCardTransactionSuccess(SuccessfulCardTransaction cardTransaction) {

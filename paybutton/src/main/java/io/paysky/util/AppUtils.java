@@ -28,7 +28,9 @@ import org.greenrobot.eventbus.EventBus;
 
 import java.math.RoundingMode;
 import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.Calendar;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -220,9 +222,18 @@ public class AppUtils {
     }
 
     public static String currencyFormat(String amount) {
-        DecimalFormat formatter = new DecimalFormat("###,###,##0.000");
-        formatter.setRoundingMode(RoundingMode.FLOOR);
-        return formatter.format(Double.parseDouble(amount));
+        try {
+            double y = Double.parseDouble(amount);
+            NumberFormat nf = NumberFormat.getNumberInstance(Locale.US);
+            DecimalFormat format = (DecimalFormat) nf;
+            format.applyPattern("#,###,##0.000");
+            return format.format(y);
+        } catch (Exception exception) {
+            DecimalFormat formatter = new DecimalFormat("###,###,##0.000");
+            formatter.setRoundingMode(RoundingMode.FLOOR);
+            return formatter.format(Double.parseDouble(amount));
+        }
+
     }
 
 

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.paybutton.BuildConfig;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -23,7 +24,10 @@ import io.paysky.data.model.response.RequestToPayResponse;
 import io.paysky.data.model.response.SendReceiptByMailResponse;
 import io.paysky.data.model.response.TransactionStatusResponse;
 import io.paysky.data.model.response.TransactionsItem;
+import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -37,6 +41,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiConnection {
 
+
+    public static String LANG = "en";
 
     public static void executePayment(ManualPaymentRequest manualPaymentRequest, final ApiResponseListener<ManualPaymentResponse> listener) {
         createConnection().executeManualPayment(manualPaymentRequest)
@@ -133,16 +139,26 @@ public class ApiConnection {
 
     private static ApiInterface createConnection() {
         HttpLoggingInterceptor interceptor = new HttpLoggingInterceptor();
+        Interceptor interceptor1 = chain -> {
+            Request request = chain.request().newBuilder()
+                    .addHeader("Accept-Language", LANG).build();
+
+            return chain.proceed(request);
+        };
+
+
         if (BuildConfig.DEBUG) {
             interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         } else {
             interceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
         }
         OkHttpClient client = new OkHttpClient.Builder().addInterceptor(interceptor)
+                .addInterceptor(interceptor1)
                 .connectTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(30, TimeUnit.SECONDS)
                 .readTimeout(30, TimeUnit.SECONDS).build();
         Log.d("ApiLinksPAYMENT_LINK", ApiLinks.PAYMENT_LINK);
+
 
         return new Retrofit.Builder()
                 .baseUrl(ApiLinks.PAYMENT_LINK)

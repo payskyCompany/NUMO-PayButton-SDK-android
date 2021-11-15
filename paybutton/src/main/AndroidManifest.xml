@@ -6,8 +6,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:theme="@style/AppTheme"
-        android:name="androidx.multidex.MultiDexApplication">
+        android:name="androidx.multidex.MultiDexApplication"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
         <activity
 
             android:name="io.paysky.ui.activity.payment.PaymentActivity"

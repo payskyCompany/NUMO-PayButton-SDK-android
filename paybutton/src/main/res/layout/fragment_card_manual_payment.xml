@@ -64,6 +64,7 @@
                     android:paddingEnd="8dp"
                     android:singleLine="true"
                     android:text=""
+                    android:textAlignment="viewStart"
                     android:textColorHint="?android:textColorHint"
                     android:textDirection="ltr"
                     android:textSize="@dimen/_14ssp" />
@@ -88,21 +89,42 @@
                     app:tint="#EAC604" />
             </LinearLayout>
 
-            <EditText
-                android:id="@+id/card_owner_name_editText"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_36sdp"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_marginTop="@dimen/_12sdp"
                 android:layout_marginEnd="@dimen/_8sdp"
                 android:background="@drawable/edittext_drawable"
-                android:hint="@string/name_on_card"
-                android:imeOptions="actionNext"
-                android:maxLines="1"
-                android:paddingStart="8dp"
-                android:singleLine="true"
-                android:textColorHint="?android:textColorHint"
-                android:textSize="@dimen/_13ssp" />
+                app:elevation="@dimen/_2sdp">
+
+
+                <EditText
+                    android:id="@+id/card_owner_name_editText"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@null"
+                    android:hint="@string/name_on_card"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:nextFocusDown="@+id/expire_date_editText"
+                    android:paddingStart="@dimen/_8sdp"
+                    android:paddingEnd="@dimen/_8sdp"
+                    android:singleLine="true"
+                    android:textAlignment="viewStart"
+                    android:textColorHint="?android:textColorHint"
+                    android:textSize="@dimen/_13ssp" />
+
+                <ImageView
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginEnd="8dp"
+                    android:src="@drawable/card_holder"
+                    app:tint="#EAC604" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"

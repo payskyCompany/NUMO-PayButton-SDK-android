@@ -158,6 +158,10 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
             isValidInputs = false;
             cardNumberEditText.setError(getString(R.string.invalid_card_number_length));
         }
+        if (cardNumberEditText.getText().toString().equals("0")) {
+            isValidInputs = false;
+            cardNumberEditText.setError(getString(R.string.invalid_card_number_length));
+        }
         if (!cardNumberEditText.getText().toString().isEmpty()
                 && !CardsValidation.luhnCheck(cardNumber)) {
             isValidInputs = false;

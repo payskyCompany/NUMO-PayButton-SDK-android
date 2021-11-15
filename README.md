@@ -75,7 +75,9 @@ payButton.setPayAmount(amount); // Amount
 payButton.setCurrencyCode(currencyCode); // Currency Code [Optional]
 payButton.setMerchantSecureHash("Merchant secure hash"); // Merchant secure hash
 payButton.setTransactionReferenceNumber("reference number"); // unique transaction reference number.
-payButton.setProductionStatus(PRODUCTION); // for testing environment use GREY
+payButton.setProductionStatus(PRODUCTION); // for testing environment use npg
+payButton.setLang(localLang);  //for setlang 
+
 // you can get reference number from AppUtils.generateRandomNumber();
 example:-        
 payButton.setTransactionReferenceNumber(AppUtils.generateRandomNumber());
