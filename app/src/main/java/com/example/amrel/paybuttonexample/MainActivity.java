@@ -12,8 +12,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Locale;
-
 import io.paysky.data.model.SuccessfulCardTransaction;
 import io.paysky.data.model.SuccessfulWalletTransaction;
 import io.paysky.exception.TransactionException;
@@ -32,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     private Spinner spinner_type;
 
     String[] list_to_show = {"PRODUCTION", "TESTING", "PACE_PAY"};
-    AllURLsStatus[] list_to_URLS = {AllURLsStatus.PRODUCTION, AllURLsStatus.GREY,
+    AllURLsStatus[] list_to_URLS = {AllURLsStatus.PRODUCTION, AllURLsStatus.STAGINIG,
             AllURLsStatus.PACE_PAY};
     int item_position = 0;
 

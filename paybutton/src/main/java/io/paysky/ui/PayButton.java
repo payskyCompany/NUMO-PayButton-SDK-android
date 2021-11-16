@@ -95,7 +95,7 @@ public class PayButton {
             case PRODUCTION:
                 ApiLinks.PAYMENT_LINK = ApiLinks.NPG_LINK;
                 break;
-            case GREY:
+            case STAGINIG:
                 ApiLinks.PAYMENT_LINK = ApiLinks.TNPG_LINK;
                 break;
             case PACE_PAY:
