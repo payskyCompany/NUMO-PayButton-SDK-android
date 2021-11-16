@@ -71,7 +71,7 @@ Example:-
 
 payButton.setMerchantId(merchantId); // Merchant id
 payButton.setTerminalId(terminalId); // Terminal  id
-payButton.setPayAmount(amount); // Amount
+payButton.setAmount(amount); // Amount
 payButton.setCurrencyCode(currencyCode); // Currency Code [Optional]
 payButton.setMerchantSecureHash("Merchant secure hash"); // Merchant secure hash
 payButton.setTransactionReferenceNumber("reference number"); // unique transaction reference number.
