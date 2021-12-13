@@ -20,6 +20,7 @@ import io.paysky.data.model.ReceiptData;
 import io.paysky.ui.activity.payment.PaymentActivity;
 import io.paysky.ui.base.BaseFragment;
 import io.paysky.util.AppUtils;
+import io.paysky.util.LocaleHelper;
 import io.paysky.util.PrintReceiptListener;
 import io.paysky.util.ReceiptManager;
 import io.paysky.util.ToastUtils;
@@ -117,6 +118,7 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
         mailSentTextView = view.findViewById(R.id.mail_sent_textView);
         showSendNotificationEmailLayout();
         showSendEmailLayout();
+        LocaleHelper.changeAppLanguage(getContext());
     }
 
     @Override

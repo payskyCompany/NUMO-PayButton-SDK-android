@@ -3,6 +3,9 @@ package io.paysky.ui.activity.payment;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.os.CountDownTimer;
+import android.os.Handler;
+import android.os.Looper;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -44,6 +47,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
     private AllURLsStatus allURLsStatus;
     private int urlStatus;
+    private static boolean isFirst = true;
 
     //Variables.
     private static boolean NORMAL_CLOSE = true;
@@ -53,7 +57,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         PrefsUtils.initialize(this);
-        LocaleHelper.setLocale(this , LocaleHelper.getLocale());
+//        LocaleHelper.setLocale(this, LocaleHelper.getLocale());
         makeActivityFullScreen();
         AppUtils.preventScreenshot(this);
         setContentView(R.layout.activity_pay);
@@ -69,8 +73,12 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         String amount = AppUtils.currencyFormat(paymentData.amountFormatted);
         paymentData.executedTransactionAmount = amount;
         amountTextView.setText(amount);
-        currencyTextView.setText(paymentData.currencyName);
+        if (LocaleHelper.getLocale().equals("en"))
+            currencyTextView.setText(paymentData.currencyName);
+        else currencyTextView.setText("د.ل");
+
         showPaymentBasedOnPaymentOptions(paymentData.paymentMethod);
+
     }
 
 
@@ -106,8 +114,41 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         qrPaymentLayout = findViewById(R.id.qr_payment_layout);
         cardPaymentLayout.setOnClickListener(this);
         qrPaymentLayout.setOnClickListener(this);
+        setLang();
     }
 
+
+    private void setLang() {
+
+        CountDownTimer timer = new CountDownTimer(100, 1000) {
+
+            public void onTick(long millisUntilFinished) {
+                //here you can have your logic to set text to edittext
+            }
+
+            public void onFinish() {
+                if (isFirst) {
+                    LocaleHelper.changeAppLanguage(PaymentActivity.this);
+                    NORMAL_CLOSE = false;
+                    recreate();
+                    isFirst = false;
+                } else {
+                    cancel();
+                }
+
+            }
+
+        }.start();
+//        new Handler(Looper.myLooper()).postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                LocaleHelper.changeAppLanguage(PaymentActivity.this);
+//                NORMAL_CLOSE = false;
+//                recreate();
+//            }
+//        }, 300);
+
+    }
 
     public void showPaymentBasedOnPaymentOptions(int paymentOptions) {
         Bundle bundle = new Bundle();
@@ -248,6 +289,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     protected void onDestroy() {
         if (NORMAL_CLOSE) {
             qrBitmap = null;
+            isFirst = true;
             TransactionManager.sendTransactionEvent();
         } else {
             PaymentActivity.NORMAL_CLOSE = true;

@@ -1,7 +1,13 @@
 package com.example.amrel.paybuttonexample;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
+import android.content.res.Resources;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -12,8 +18,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 import io.paysky.data.model.SuccessfulCardTransaction;
 import io.paysky.data.model.SuccessfulWalletTransaction;
+import io.paysky.data.network.ApiConnection;
 import io.paysky.exception.TransactionException;
 import io.paysky.ui.PayButton;
 import io.paysky.util.AllURLsStatus;
@@ -68,9 +77,9 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         paymentStatusTextView = findViewById(R.id.payment_status_textView);
         currencyEditText = findViewById(R.id.currency_editText);
         secureHashKeyEditText = findViewById(R.id.secureHash_editText);
-        merchantIdEditText.setText("10014656535");
-        terminalIdEditText.setText("16253625");
-        secureHashKeyEditText.setText("2e708b4657eed7cc2a18c631b353a940fe47980197dd8c22296ceb13c60df94a");
+        merchantIdEditText.setText("10098206085");
+        terminalIdEditText.setText("94674732");
+        secureHashKeyEditText.setText("63336634373139362D616530392D346532642D383861372D623666333963656563623265");
         payTextView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,7 +126,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                 payButton.setMerchantSecureHash(secureHashKey);
                 payButton.setTransactionReferenceNumber(AppUtils.generateRandomNumber());
                 payButton.setProductionStatus(list_to_URLS[item_position]);
-                payButton.setLang(LocaleHelper.getLocale());
+                payButton.setLang(MyLocaleHelper.getLocale());
+                Log.d("LocalLang", MyLocaleHelper.getLocale());
                 payButton.createTransaction(new PayButton.PaymentTransactionCallback() {
                     @Override
                     public void onCardTransactionSuccess(SuccessfulCardTransaction cardTransaction) {
@@ -160,7 +170,67 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
     @Override
     public void onClick(View view) {
-        LocaleHelper.changeAppLanguage(this);
+        MyLocaleHelper.changeAppLanguage(this);
         recreate();
+        if (LocaleHelper.getLocale().equals("ar")) {
+            languageTextView.setText(R.string.english);
+            merchantIdEditText.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            terminalIdEditText.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+            amountEditText.setTextAlignment(View.TEXT_ALIGNMENT_VIEW_START);
+        } else {
+            languageTextView.setText(R.string.arabic);
+        }
+    }
+
+}
+
+class MyLocaleHelper {
+
+
+    public static void setLocale(Context context, String lang) {
+        Locale locale = new Locale(lang);
+
+        Locale.setDefault(locale);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+
+            Resources resources = context.getResources();
+
+            Configuration configuration = resources.getConfiguration();
+
+            DisplayMetrics displayMetrics = resources.getDisplayMetrics();
+
+            configuration.setLocale(locale);
+
+            resources.updateConfiguration(configuration, displayMetrics);
+
+        } else {
+
+            Configuration config = new Configuration();
+
+            config.locale = locale;
+
+            context.getResources().updateConfiguration(config,
+
+                    context.getResources().getDisplayMetrics());
+
+        }
+
+
+    }
+
+
+    public static String getLocale() {
+        return Locale.getDefault().getLanguage();
+    }
+
+    public static void changeAppLanguage(Context context) {
+        String appLocale = Locale.getDefault().getLanguage();
+        if (appLocale.equals("ar")) {
+            setLocale(context, "en");
+        } else {
+            setLocale(context, "ar");
+        }
     }
 }
+

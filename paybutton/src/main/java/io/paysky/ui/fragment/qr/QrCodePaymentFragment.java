@@ -26,6 +26,7 @@ import io.paysky.ui.base.BaseFragment;
 import io.paysky.ui.fragment.paymentsuccess.PaymentApprovedFragment;
 import io.paysky.util.AppConstant;
 import io.paysky.util.AppUtils;
+import io.paysky.util.LocaleHelper;
 import io.paysky.util.ToastUtils;
 import io.paysky.util.TransactionManager;
 
@@ -120,6 +121,7 @@ public class QrCodePaymentFragment extends BaseFragment implements QrView, View.
         requestPaymentButton = view.findViewById(R.id.request_payment);
         requestPaymentButton.setOnClickListener(this);
         qrImageView = view.findViewById(R.id.qr_imageView);
+        LocaleHelper.changeAppLanguage(getContext());
     }
 
 

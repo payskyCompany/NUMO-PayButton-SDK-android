@@ -38,6 +38,7 @@ import io.paysky.ui.base.BaseFragment;
 import io.paysky.ui.fragment.paymentfail.PaymentFailedFragment;
 import io.paysky.ui.fragment.paymentsuccess.PaymentApprovedFragment;
 import io.paysky.util.AppConstant;
+import io.paysky.util.LocaleHelper;
 import io.paysky.util.ToastUtils;
 import io.paysky.util.TransactionManager;
 
@@ -94,6 +95,7 @@ public class WebPaymentFragment extends BaseFragment implements WebPaymentView {
         webView.setBackgroundColor(Color.TRANSPARENT);
         webView.setLayerType(WebView.LAYER_TYPE_SOFTWARE, null);
         load3dTransactionWebView();
+        LocaleHelper.changeAppLanguage(getContext());
     }
 
 

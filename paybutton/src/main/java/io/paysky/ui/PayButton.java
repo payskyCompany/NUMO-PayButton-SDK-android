@@ -4,6 +4,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.paybutton.R;
 
@@ -168,6 +169,7 @@ public class PayButton {
                 paymentData.amountFormatted = amount + "";
                 paymentData.paymentMethod = response.paymentMethod;
                 paymentData.secureHashKey = merchantSecureHash;
+                paymentData.lang = lang;
                 String[] c = {paymentData.currencyCode};
                 CurrencyCode currencyCode = CurrencyHelper.getCurrencyCode(context, c[0]);
                 if (currencyCode != null) {
@@ -179,6 +181,7 @@ public class PayButton {
                 bundle.putParcelable(AppConstant.BundleKeys.PAYMENT_DATA, paymentData);
                 bundle.putInt(AppConstant.BundleKeys.URL_ENUM_KEY, productionStatus.ordinal());
                 context.startActivity(new Intent(context, PaymentActivity.class).putExtras(bundle));
+                Log.v("PackageNameTest", context.getPackageName());
             }
 
             @Override

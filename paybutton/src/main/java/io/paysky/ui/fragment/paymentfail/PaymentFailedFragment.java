@@ -16,6 +16,7 @@ import com.example.paybutton.R;
 import io.paysky.ui.activity.payment.PaymentActivity;
 import io.paysky.ui.base.BaseFragment;
 import io.paysky.util.AppUtils;
+import io.paysky.util.LocaleHelper;
 
 
 public class PaymentFailedFragment extends BaseFragment implements View.OnClickListener {
@@ -71,6 +72,7 @@ public class PaymentFailedFragment extends BaseFragment implements View.OnClickL
         TextView declineCauseTextView = view.findViewById(R.id.declined_cause_textView);
         AppUtils.showHtmlText(transactionDeclinedTextView, R.string.transaction_declined);
         declineCauseTextView.setText(declineCause);
+        LocaleHelper.changeAppLanguage(getContext());
     }
 
     @Override

@@ -3,6 +3,7 @@ package io.paysky.ui.fragment.manualpayment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +24,7 @@ import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
 import io.paysky.data.model.PaymentData;
 import io.paysky.data.model.ReceiptData;
+import io.paysky.ui.activity.payment.PaymentActivity;
 import io.paysky.ui.base.BaseFragment;
 import io.paysky.ui.custom.CardEditText;
 import io.paysky.ui.fragment.paymentfail.PaymentFailedFragment;
@@ -51,6 +53,7 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
     private ImageView scanCardImageView;
     private String ccv;
 
+    private static boolean isFirst = true;
 
     static final int MY_SCAN_REQUEST_CODE = 1;
 
@@ -80,6 +83,7 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
         initView(view);
     }
 
+
     private void initView(View view) {
         activity.setHeaderIcon(R.drawable.ic_back);
         activity.setHeaderIconClickListener(new View.OnClickListener() {
@@ -104,6 +108,7 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
         }
         scanCardImageView = view.findViewById(R.id.scan_camera_imageView);
         scanCardImageView.setOnClickListener(this);
+        LocaleHelper.changeAppLanguage(getContext());
     }
 
 

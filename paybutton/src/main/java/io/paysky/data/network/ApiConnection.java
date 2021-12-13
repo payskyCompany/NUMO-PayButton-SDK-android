@@ -142,13 +142,13 @@ public class ApiConnection {
         Interceptor interceptor1 = chain -> {
             Request request = chain.request().newBuilder()
                     .addHeader("Accept-Language", LANG).build();
-
+            Log.d("Accept-Language", LANG);
             return chain.proceed(request);
         };
 
 
         if (BuildConfig.DEBUG) {
-            interceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+            interceptor.setLevel(HttpLoggingInterceptor.Level.BASIC);
         } else {
             interceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
         }

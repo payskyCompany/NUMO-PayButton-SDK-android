@@ -16,6 +16,7 @@ public class PaymentData implements Parcelable {
     public int paymentMethod;
     public boolean isTahweel, isVisa;
     public String currencyName;
+    public String lang;
     public String executedTransactionAmount;
 
     public PaymentData() {
@@ -37,6 +38,7 @@ public class PaymentData implements Parcelable {
         isTahweel = in.readByte() != 0;
         isVisa = in.readByte() != 0;
         currencyName = in.readString();
+        lang = in.readString();
         executedTransactionAmount = in.readString();
     }
 
@@ -73,6 +75,7 @@ public class PaymentData implements Parcelable {
         parcel.writeByte((byte) (isTahweel ? 1 : 0));
         parcel.writeByte((byte) (isVisa ? 1 : 0));
         parcel.writeString(currencyName);
+        parcel.writeString(lang);
         parcel.writeString(executedTransactionAmount);
     }
 }

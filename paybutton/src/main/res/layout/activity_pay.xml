@@ -255,6 +255,7 @@
                     <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
+                        android:gravity="bottom"
                         android:orientation="vertical">
 
                         <TextView
@@ -266,7 +267,8 @@
                             android:drawablePadding="8dp"
                             android:text="@string/arabic"
                             android:textColor="#2D3134"
-                            android:textSize="@dimen/_13ssp" />
+                            android:textSize="@dimen/_13ssp"
+                            android:visibility="gone" />
 
                         <TextView
                             android:id="@+id/terms_conditions_textView"
@@ -275,11 +277,13 @@
                             android:layout_marginTop="3dp"
                             android:text="@string/terms_conditions"
                             android:textColor="#2D3134"
-                            android:textSize="@dimen/_11ssp" />
+                            android:textSize="@dimen/_11ssp"
+                            android:visibility="gone" />
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
                             android:layout_marginTop="3dp"
                             android:text="@string/powered_paysky"
                             android:textColor="@color/colorPrimary"
