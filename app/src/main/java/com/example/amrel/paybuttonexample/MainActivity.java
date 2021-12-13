@@ -189,33 +189,11 @@ class MyLocaleHelper {
 
     public static void setLocale(Context context, String lang) {
         Locale locale = new Locale(lang);
-
         Locale.setDefault(locale);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
-
-            Resources resources = context.getResources();
-
-            Configuration configuration = resources.getConfiguration();
-
-            DisplayMetrics displayMetrics = resources.getDisplayMetrics();
-
-            configuration.setLocale(locale);
-
-            resources.updateConfiguration(configuration, displayMetrics);
-
-        } else {
-
-            Configuration config = new Configuration();
-
-            config.locale = locale;
-
-            context.getResources().updateConfiguration(config,
-
-                    context.getResources().getDisplayMetrics());
-
-        }
-
+        Configuration config = new Configuration();
+        config.locale = locale;
+        context.getResources().updateConfiguration(config,
+                context.getResources().getDisplayMetrics());
 
     }
 

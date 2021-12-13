@@ -99,6 +99,7 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
         } else {
             trxIdTextView.setText(getString(R.string.trx_id) + " #" + transactionData.rrn);
         }
+        if (transactionData.rrn.isEmpty()) trxIdTextView.setVisibility(View.GONE);
         Button closeButton = view.findViewById(R.id.close_button);
         closeButton.setOnClickListener(this);
         printReceipt = view.findViewById(R.id.print_receipt_button);
@@ -190,7 +191,7 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
 
     @Override
     public void showErrorToast(int error) {
-        ToastUtils.showLongToast(activity,getString(error));
+        ToastUtils.showLongToast(activity, getString(error));
     }
 
     @Override

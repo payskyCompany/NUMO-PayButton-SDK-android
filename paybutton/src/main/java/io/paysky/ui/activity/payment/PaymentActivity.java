@@ -19,6 +19,7 @@ import androidx.fragment.app.Fragment;
 import com.example.paybutton.R;
 
 import io.paysky.data.model.PaymentData;
+import io.paysky.data.network.ApiConnection;
 import io.paysky.ui.base.BaseActivity;
 import io.paysky.ui.fragment.manualpayment.ManualPaymentFragment;
 import io.paysky.ui.fragment.qr.QrCodePaymentFragment;
@@ -39,7 +40,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     private LinearLayout qrPaymentLayout;
     private TextView currencyTextView;
     private TextView amountTextView;
-    private TextView merchantNameTextView;
+    private TextView merchantNameTextView, tvMerchantText,tvPowerByText, tvAmountText, tvTitle;
     private ImageView poweredByImageView;
     //Objects,
     public static Bitmap qrBitmap;
@@ -104,6 +105,10 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         merchantNameTextView = findViewById(R.id.pb_merchant_name_textView);
         currencyTextView = findViewById(R.id.currency_textView);
         amountTextView = findViewById(R.id.amount_textView);
+        tvTitle = findViewById(R.id.tvTitle);
+        tvAmountText = findViewById(R.id.tvAmountText);
+        tvPowerByText = findViewById(R.id.tvPowerByText);
+        tvMerchantText = findViewById(R.id.tvMerchantText);
         TextView languageTextView = findViewById(R.id.language_textView);
         poweredByImageView = findViewById(R.id.iv_powered_by);
         languageTextView.setOnClickListener(this);
@@ -119,7 +124,12 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
 
     private void setLang() {
-
+        if (ApiConnection.LANG.equals("ar")) {
+            tvMerchantText.setText("التاجر");
+            tvTitle.setText("نموذج الدفع السريع");
+            tvAmountText.setText("المبلغ");
+            tvPowerByText.setText("تم التطوير بواسطة باى سكاى");
+        }
         CountDownTimer timer = new CountDownTimer(100, 1000) {
 
             public void onTick(long millisUntilFinished) {
@@ -252,6 +262,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             manualTextView.setTextColor(getResources().getColor(android.R.color.white));
             if (LocaleHelper.getLocale().equals("ar")) {
                 manualTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_card_white, 0);
+                manualTextView.setText("بطاقة");
             } else {
                 manualTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_card_white, 0, 0, 0);
             }
@@ -259,6 +270,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             TextView qrTextView = qrPaymentLayout.findViewById(R.id.qr_payment_textView);
             qrTextView.setTextColor(getResources().getColor(R.color.font_gray_color3));
             if (LocaleHelper.getLocale().equals("ar")) {
+                manualTextView.setText("بطاقة");
                 qrTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_wallet_gray, 0);
             } else {
                 qrTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_wallet_gray, 0, 0, 0);
@@ -269,6 +281,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             TextView manualTextView = cardPaymentLayout.findViewById(R.id.card_payment_textView);
             manualTextView.setTextColor(getResources().getColor(R.color.font_gray_color3));
             if (LocaleHelper.getLocale().equals("ar")) {
+                manualTextView.setText("بطاقة");
                 manualTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_card_black, 0);
             } else {
                 manualTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_card_black, 0, 0, 0);
@@ -277,6 +290,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
             TextView qrTextView = qrPaymentLayout.findViewById(R.id.qr_payment_textView);
             qrTextView.setTextColor(getResources().getColor(android.R.color.white));
             if (LocaleHelper.getLocale().equals("ar")) {
+                manualTextView.setText("بطاقة");
                 qrTextView.setCompoundDrawablesWithIntrinsicBounds(0, 0, R.drawable.ic_wallet_white, 0);
             } else {
                 qrTextView.setCompoundDrawablesWithIntrinsicBounds(R.drawable.ic_wallet_white, 0, 0, 0);

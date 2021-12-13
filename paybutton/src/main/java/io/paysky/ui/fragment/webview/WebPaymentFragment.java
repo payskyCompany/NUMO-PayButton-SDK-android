@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -121,6 +122,7 @@ public class WebPaymentFragment extends BaseFragment implements WebPaymentView {
                     // call server.
                     try {
                         Uri uri = Uri.parse(url);
+                        Log.d("Url3ds",url);
                         Set<String> names = uri.getQueryParameterNames();
                         JSONObject jsonObject = new JSONObject();
                         for (String key : names) {
