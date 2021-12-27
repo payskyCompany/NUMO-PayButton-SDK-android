@@ -122,7 +122,7 @@ public class WebPaymentFragment extends BaseFragment implements WebPaymentView {
                     // call server.
                     try {
                         Uri uri = Uri.parse(url);
-                        Log.d("Url3ds",url);
+                        Log.d("Url3ds", url);
                         Set<String> names = uri.getQueryParameterNames();
                         JSONObject jsonObject = new JSONObject();
                         for (String key : names) {
@@ -180,12 +180,15 @@ public class WebPaymentFragment extends BaseFragment implements WebPaymentView {
 
 
                         } else {
+                            bundle.putString("decline_cause", jsonObject.getString("Message"));
+                            bundle.putString("system_", jsonObject.getString("Message"));
+                            bundle.putString("opened_by", "manual_payment");
 
                             activity.replaceFragmentAndRemoveOldFragment(PaymentFailedFragment.class, bundle);
 
 
                         }
-
+                        Log.d("JsonObj", jsonObject.toString());
 
                     } catch (JSONException e) {
                         e.printStackTrace();

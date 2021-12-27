@@ -90,7 +90,10 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
     private void initView(View view) {
         // find views.
         TextView approvedTextView = view.findViewById(R.id.approved_textView);
-        AppUtils.showHtmlText(approvedTextView, R.string.transaction_success);
+//        AppUtils.showHtmlText(approvedTextView, R.string.approved);
+        TextView tvTransaction = view.findViewById(R.id.tvTransaction);
+        tvTransaction.setText(getString(R.string.transaction));
+        approvedTextView.setText(getString(R.string.approved));
         TextView authNumberTextView = view.findViewById(R.id.auth_number_textView);
         authNumberTextView.setText(getString(R.string.auth_number) + " #" + transactionData.authNumber);
         TextView trxIdTextView = view.findViewById(R.id.trx_id_textView);

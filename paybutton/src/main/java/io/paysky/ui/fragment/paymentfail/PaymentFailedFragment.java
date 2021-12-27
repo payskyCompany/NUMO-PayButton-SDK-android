@@ -2,6 +2,7 @@ package io.paysky.ui.fragment.paymentfail;
 
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -68,11 +69,18 @@ public class PaymentFailedFragment extends BaseFragment implements View.OnClickL
         closeButton.setOnClickListener(this);
         Button tryAgainButton = view.findViewById(R.id.try_again_button);
         tryAgainButton.setOnClickListener(this);
+        TextView tvTransaction = view.findViewById(R.id.tvTransaction);
         TextView transactionDeclinedTextView = view.findViewById(R.id.transaction_declined_textView);
         TextView declineCauseTextView = view.findViewById(R.id.declined_cause_textView);
-        AppUtils.showHtmlText(transactionDeclinedTextView, R.string.transaction_declined);
+//        AppUtils.showHtmlText(transactionDeclinedTextView, R.string.declined);
+        tvTransaction.setText(getString(R.string.transaction));
+        transactionDeclinedTextView.setText(getString(R.string.declined));
         declineCauseTextView.setText(declineCause);
         LocaleHelper.changeAppLanguage(getContext());
+        if (declineCause != null) {
+            Log.d("DeclinedCause", declineCause);
+        } else Log.d("DeclinedCause", "Null");
+
     }
 
     @Override
@@ -80,7 +88,7 @@ public class PaymentFailedFragment extends BaseFragment implements View.OnClickL
         int viewId = view.getId();
         if (viewId == R.id.close_button) {
             activity.onBackPressed();
-        } else if(viewId==R.id.try_again_button) {
+        } else if (viewId == R.id.try_again_button) {
             activity.showManualPayment();
         }
     }

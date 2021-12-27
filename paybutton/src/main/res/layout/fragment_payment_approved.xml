@@ -8,7 +8,7 @@
         layout="@layout/print_receipt_layout"
         android:layout_width="384px"
         android:layout_height="wrap_content"
-        android:visibility="invisible" />
+        android:visibility="gone" />
 
     <TableLayout
         android:layout_width="match_parent"
@@ -26,13 +26,42 @@
 
         </TableRow>
 
-        <TextView
-            android:id="@+id/approved_textView"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:textSize="@dimen/_14ssp"
-            tools:text="approved" />
+
+        <TableRow
+            android:layout_marginTop="@dimen/_4sdp"
+            android:gravity="center">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/font_gray_color2"
+                android:textSize="@dimen/_14ssp"
+                android:visibility="gone"
+                tools:text="@string/transaction" />
+
+
+            <TextView
+                android:id="@+id/tvTransaction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="6dp"
+                android:gravity="center"
+                android:textColor="@color/font_gray_color2"
+                android:textSize="@dimen/_14ssp"
+                tools:text="@string/transaction" />
+
+            <TextView
+                android:id="@+id/approved_textView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="#00BFA5"
+                android:textSize="@dimen/_14ssp"
+                tools:text="@string/approved" />
+
+        </TableRow>
 
         <TableRow
             android:layout_marginLeft="@dimen/_10sdp"
@@ -46,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="#282C2E"
+                android:textColor="@color/font_gray_color2"
                 android:textSize="@dimen/_14ssp"
                 tools:text="@string/auth_number" />
 
@@ -64,7 +93,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:textColor="#282C2E"
+                android:textColor="@color/font_gray_color2"
                 android:textSize="@dimen/_14ssp"
                 tools:text="@string/trx_id" />
         </TableRow>
@@ -99,7 +128,7 @@
                 android:layout_marginTop="4dp"
                 android:gravity="center"
                 android:text="@string/send_notification"
-                android:textColor="#282C2E"
+                android:textColor="@color/font_gray_color2"
                 android:textSize="@dimen/_12ssp" />
         </LinearLayout>
 

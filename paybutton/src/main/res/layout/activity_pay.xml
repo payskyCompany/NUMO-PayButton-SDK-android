@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/paybutton_app_background"
     android:orientation="vertical"
     android:padding="6dp">
 
@@ -84,7 +83,7 @@
                         android:layout_marginTop="4dp"
                         android:gravity="center"
                         android:maxLines="1"
-                        android:textColor="#2D3134"
+                        android:textColor="@color/font_gray_color2"
                         android:textSize="@dimen/_13ssp"
                         tools:text="gumia.com" />
 
@@ -133,7 +132,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="@dimen/_2sdp"
                             android:gravity="center|bottom"
-                            android:textColor="#2D3134"
+                            android:textColor="@color/font_gray_color2"
                             android:textSize="@dimen/_10ssp"
                             tools:text="@string/egp" />
 
@@ -141,7 +140,7 @@
                             android:id="@+id/amount_textView"
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
-                            android:textColor="#2D3134"
+                            android:textColor="@color/font_gray_color2"
                             android:textSize="@dimen/_12ssp"
                             tools:text="200" />
 
@@ -290,7 +289,7 @@
                             android:layout_gravity="bottom"
                             android:layout_marginTop="3dp"
                             android:text="@string/powered_paysky"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/blue"
                             android:textSize="@dimen/_11ssp" />
                     </LinearLayout>
 

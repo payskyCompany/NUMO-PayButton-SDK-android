@@ -6,5 +6,9 @@
     <color name="backgroundColorDark">#f1f2f3</color>
     <color name="font_gray_color2">#878d91</color>
     <color name="font_gray_color3">#2D3134</color>
+    <color name="black">#000</color>
+    <color name="white">#fff</color>
+    <color name="blue">#3F51B5</color>
+    <color name="red">#C23A2C</color>
 
 </resources>

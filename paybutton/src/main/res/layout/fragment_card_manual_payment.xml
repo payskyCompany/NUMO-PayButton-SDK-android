@@ -20,7 +20,8 @@
                 android:layout_marginBottom="@dimen/_7sdp"
                 android:gravity="center"
                 android:text="@string/enter_card_data"
-                android:textColor="#282C2E" />
+                android:textColor="@color/font_gray_color2"
+                />
 
 
             <TableRow>
@@ -65,7 +66,8 @@
                     android:singleLine="true"
                     android:text=""
                     android:textAlignment="viewStart"
-                    android:textColorHint="?android:textColorHint"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/font_gray_color2"
                     android:textDirection="ltr"
                     android:textSize="@dimen/_14ssp" />
 
@@ -104,6 +106,8 @@
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:textColor="@color/black"
+                    android:textColorHint="@color/font_gray_color2"
                     android:background="@null"
                     android:hint="@string/name_on_card"
                     android:imeOptions="actionNext"
@@ -114,7 +118,6 @@
                     android:paddingEnd="@dimen/_8sdp"
                     android:singleLine="true"
                     android:textAlignment="viewStart"
-                    android:textColorHint="?android:textColorHint"
                     android:textSize="@dimen/_13ssp" />
 
                 <ImageView
@@ -158,7 +161,8 @@
                         android:paddingEnd="8dp"
                         android:singleLine="true"
                         android:textAlignment="viewStart"
-                        android:textColorHint="?android:textColorHint"
+                        android:textColor="@color/black"
+                        android:textColorHint="@color/font_gray_color2"
                         android:textSize="@dimen/_14ssp" />
 
                     <ImageView
