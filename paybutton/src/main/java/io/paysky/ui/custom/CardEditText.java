@@ -62,7 +62,7 @@ public class CardEditText extends AppCompatEditText implements TextWatcher {
         if (s.startsWith("4") || s.matches(CardPattern.VISA)) {
 //            cardIcon = R.drawable.vi;
             type = "Visa";
-        } else if (s.startsWith("6") || s.matches(CardPattern.NOMO)) {
+        } else if (s.startsWith("6") || s.startsWith("8") || s.matches(CardPattern.NOMO)) {
             cardIcon = R.drawable.nomo;
             type = "Nomo";
         } else if (s.matches(CardPattern.MASTERCARD_SHORTER) ||

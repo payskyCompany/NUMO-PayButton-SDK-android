@@ -8,7 +8,7 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 23
-        versionName "2.0.2"
+        versionName "2.04"
         // Enabling multidex support.
         multiDexEnabled true
     }
@@ -85,7 +85,7 @@ afterEvaluate {
                 // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.paysky'
                 artifactId = 'numopaybtton'
-                version = '1.0.7'
+                version = '1.0.9'
             }
 
         }
