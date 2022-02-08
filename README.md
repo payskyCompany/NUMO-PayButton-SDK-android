@@ -4,7 +4,8 @@ The purpose of this SDK to help programmers to use Numo payment SDK .
 
 ## Getting Started
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
+These instructions will get you a copy of the project up and running on your local machine for
+development and testing purposes.
 
 ### Prerequisites
 
@@ -34,12 +35,12 @@ Example:-
                 }
 			  
 3- in your build.gradle file in app level in dependencies{} add :-    
-implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.6'
+implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.8'
 
 
 Example:-
 dependencies {
-      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.6'
+      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.8'
 }
 
 4- Sync your project.
@@ -151,9 +152,10 @@ Example:-
 
 ### Resolving conflict
 
-Because we use some of libraries like Okhttp, retrofit , EventBus and you may use them with different version number ,
-in some cases this will make a conflict in build project to solve this problem you should force the library that has conflict
-with specific version number.
+Because we use some of libraries like Okhttp, retrofit , EventBus and you may use them with
+different version number , in some cases this will make a conflict in build project to solve this
+problem you should force the library that has conflict with specific version number.
+
 ```
 Example conflict in Gson library we use version  
 implementation 'com.google.code.gson:gson:2.8.5'
@@ -169,28 +171,28 @@ configurations.all {
 
 force your specific version and sync project again.
 ```
- Reference for how to solve problem
+
+Reference for how to solve problem
 (https://stackoverflow.com/questions/28444016/how-can-i-force-gradle-to-set-the-same-version-for-two-dependencies)
 (https://stackoverflow.com/questions/28444016/how-can-i-force-gradle-to-set-the-same-version-for-two-dependencies/39292202)
-
 
 ## Deployment
 
 1-Before deploy your project live ,you should get a merchant id and terminal id from our company .
-2-you should keep your merchant id and terminal id secured
-in your project, encrypt them before save them in project.
+2-you should keep your merchant id and terminal id secured in your project, encrypt them before save
+them in project.
 
 ## Built With
 
 * [Retrofit](http://square.github.io/retrofit/) - Android Networking library.
 * [EventBus](https://github.com/greenrobot/EventBus) - Event bus send events between your classes.
 
-
 ## Authors
 
 **PaySky Company** - (https://www.paysky.io)
 
 ## Sample Project
+
 **https://github.com/payskyCompany/NUMO-PayButton-SDK-android/tree/master/app**
 
 
