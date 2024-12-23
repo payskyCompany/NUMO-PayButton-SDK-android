@@ -1,9 +1,10 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 29
+    namespace "com.example.amrel.paybuttonexample"
+    compileSdkVersion 34
     defaultConfig {
-        applicationId "com.example.paybutton"
+        applicationId "com.example.amrel.paybuttonexample"
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 24
@@ -17,7 +18,6 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-    buildToolsVersion '28.0.3'
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
