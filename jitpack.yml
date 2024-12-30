@@ -1,5 +1,4 @@
 jdk:
-  -openjdk11
-
-before_install:
-  - ./scripts/prepareJitpackEnvironment.sh
+  - openjdk17
+  - openjdk-17
+# Configuration file for building snapshots and releases with jitpack.io
