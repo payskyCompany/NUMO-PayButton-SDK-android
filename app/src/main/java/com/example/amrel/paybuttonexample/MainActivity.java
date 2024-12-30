@@ -73,11 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         paymentStatusTextView = findViewById(R.id.payment_status_textView);
         currencyEditText = findViewById(R.id.currency_editText);
         secureHashKeyEditText = findViewById(R.id.secureHash_editText);
-        merchantIdEditText.setText("11086828329");
-        terminalIdEditText.setText("44442092");
-        secureHashKeyEditText.setText("c5f0681c3c61caa40c8dbe23a9feda69 ");
-        currencyEditText.setText("434");
-        amountEditText.setText("100");
+
         payTextView.setOnClickListener(v -> {
             paymentStatusTextView.setText("");
             String terminalId = terminalIdEditText.getText().toString().trim();
