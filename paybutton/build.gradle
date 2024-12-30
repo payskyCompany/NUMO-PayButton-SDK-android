@@ -1,14 +1,14 @@
-apply plugin: 'com.android.library'
-// for Android libraries
-apply plugin: 'maven-publish'
-
+plugins {
+    id 'com.android.library'
+    // for Android libraries
+    id 'maven-publish'
+}
 android {
-    compileSdkVersion 29
+    namespace 'io.paysky.paybutton'
+    compileSdk 34
     defaultConfig {
         minSdkVersion 19
-        targetSdkVersion 29
-        versionCode 23
-        versionName "2.04"
+        targetSdkVersion 34
         // Enabling multidex support.
         multiDexEnabled true
     }
@@ -18,21 +18,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
-//    afterEvaluate {
-//        tasks.matching {
-//            it.name.startsWith('dex')
-//        }.each { dx ->
-//            if (dx.additionalParameters == null) {
-//                dx.additionalParameters = ['--multi-dex']
-//            } else {
-//                dx.additionalParameters += '--multi-dex'
-//            }
-//        }
-//    }
-    buildToolsVersion '28.0.3'
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        buildConfig = true
+    }
+
+    publishing {
+        publishing {
+            singleVariant("release") {
+                withSourcesJar()
+                withJavadocJar()
+            }
+        }
     }
 }
 
@@ -48,15 +49,14 @@ dependencies {
     implementation 'commons-codec:commons-codec:1.10'
     implementation 'com.github.prashantsolanki3:Secure-Pref-Manager:0.25'
     implementation 'org.glassfish:javax.annotation:10.0-b28'
-    implementation 'com.google.zxing:core:3.3.3'
+    implementation 'com.google.zxing:core:3.4.1'
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'org.simpleframework:simple-xml:2.7.1'
-    implementation 'com.squareup.retrofit2:retrofit:2.7.0'
-    implementation 'com.google.code.gson:gson:2.8.5'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.google.code.gson:gson:2.10.1'
+    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.squareup.okhttp3:logging-interceptor:3.12.0'
     implementation 'com.mobprofs:retrofit-simplexmlconverter:1.1'
-    implementation 'morxander.editcard:EditCard:1.0.1'
     implementation 'com.intuit.sdp:sdp-android:1.0.6'
     implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation files('libs/magnetictrackparser-2.01.02.jar')
@@ -68,26 +68,17 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
 
     implementation 'io.card:android-sdk:5.5.1'
-
 }
 
-
-// Because the components are created only during the afterEvaluate phase, you must
-// configure your publications using the afterEvaluate() lifecycle method.
 afterEvaluate {
     publishing {
         publications {
-            // Creates a Maven publication called "release".
             release(MavenPublication) {
-                // Applies the component for the release build variant.
                 from components.release
-
-                // You can then customize attributes of the publication as shown below.
                 groupId = 'com.github.paysky'
                 artifactId = 'numopaybtton'
                 version = '1.0.9'
             }
-
         }
     }
 }

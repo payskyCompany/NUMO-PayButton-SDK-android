@@ -13,7 +13,7 @@
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context="io.paysky.ui.fragment.paymentsuccess.PaymentApprovedFragment">
+        tools:context="io.paysky.paybutton.ui.fragment.paymentsuccess.PaymentApprovedFragment">
 
         <TableRow android:gravity="center">
 

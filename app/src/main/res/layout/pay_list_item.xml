@@ -8,11 +8,4 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Item1 item1 item1" />
-
-    <io.paysky.ui.custom.PayButton
-        android:id="@+id/payBtn"
-        android:layout_width="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_height="wrap_content" />
-
 </LinearLayout>
