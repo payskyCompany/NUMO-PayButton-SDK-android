@@ -29,18 +29,19 @@ repositories{} inside it add :-
 maven { url 'https://jitpack.io' }
 
 Example:-
-     allprojects { repositories {
-         maven { url 'https://jitpack.io' }
-                               }
-                }
+allprojects {
+	repositories {
+		maven { url 'https://jitpack.io' }
+	}
+}
 			  
 3- in your build.gradle file in app level in dependencies{} add :-    
-implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.8'
+implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.10'
 
 
 Example:-
 dependencies {
-      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.8'
+      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.10'
 }
 
 4- Sync your project.
