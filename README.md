@@ -36,12 +36,12 @@ allprojects {
 }
 			  
 3- in your build.gradle file in app level in dependencies{} add :-    
-implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.10'
+implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.11'
 
 
 Example:-
 dependencies {
-      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.10'
+      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.11'
 }
 
 4- Sync your project.
