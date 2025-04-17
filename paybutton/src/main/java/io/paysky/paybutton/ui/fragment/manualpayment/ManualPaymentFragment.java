@@ -3,17 +3,18 @@ package io.paysky.paybutton.ui.fragment.manualpayment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-
-import io.paysky.paybutton.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -21,6 +22,7 @@ import java.util.Locale;
 
 import io.card.payment.CardIOActivity;
 import io.card.payment.CreditCard;
+import io.paysky.paybutton.R;
 import io.paysky.paybutton.data.model.PaymentData;
 import io.paysky.paybutton.data.model.ReceiptData;
 import io.paysky.paybutton.ui.base.BaseFragment;
@@ -45,6 +47,7 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
     private EditText cardOwnerNameEditText;
     private EditText expireDateEditText;
     private EditText ccvEditText;
+    private LinearLayout linearCVV;
     private Button proceedButton;
     private String cardNumber;
     private String expireDate;
@@ -92,8 +95,33 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
         });
 
         ImageView cardTypeImageView = view.findViewById(R.id.card_type_imageView);
+        linearCVV = view.findViewById(R.id.linearCVV);
         cardNumberEditText = view.findViewById(R.id.card_number_editText);
         cardNumberEditText.setCardTypeImage(cardTypeImageView);
+        cardNumberEditText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (s.length() == 2) {
+                    if (s.toString().equals("63") || s.toString().equals("87")) {
+                        linearCVV.setVisibility(View.GONE);
+                    } else {
+                        linearCVV.setVisibility(View.VISIBLE);
+                    }
+                } else if (s.length() < 1 || s.toString().isEmpty()) {
+                    linearCVV.setVisibility(View.GONE);
+                }
+            }
+        });
         cardOwnerNameEditText = view.findViewById(R.id.card_owner_name_editText);
         expireDateEditText = view.findViewById(R.id.expire_date_editText);
         ccvEditText = view.findViewById(R.id.ccv_editText);
