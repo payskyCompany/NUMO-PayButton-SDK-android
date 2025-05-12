@@ -41,7 +41,7 @@ implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.11'
 
 Example:-
 dependencies {
-      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.11'
+      implementation 'com.github.payskyCompany:NUMO-PayButton-SDK-android:1.0.12'
 }
 
 4- Sync your project.
