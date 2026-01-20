@@ -13,6 +13,10 @@ public interface AppConstant {
         String CURRENCY_CODE = "currency_code";
         String TRANSACTION_REFERENCE_NUMBER = "transaction_reference_number";
         String URL_ENUM_KEY = "enumKey";
+
+        String TOKENIZED_CARD = "tokenized_card";
+        String DECLINE_CAUSE = "decline_cause";
+
     }
 
 

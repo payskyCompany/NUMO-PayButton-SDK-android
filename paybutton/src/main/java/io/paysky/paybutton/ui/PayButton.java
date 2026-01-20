@@ -29,7 +29,7 @@ import io.paysky.paybutton.util.ToastUtils;
 public class PayButton {
 
     private Context context;
-    private String merchantId, terminalId;
+    private String merchantId, terminalId, customerId;
     private double amount = 0.0;
     private int currencyCode = 0;
     private String merchantSecureHash;
@@ -89,6 +89,10 @@ public class PayButton {
         return this;
     }
 
+    public PayButton setCustomerId(String customerId) {
+        this.customerId = customerId;
+        return this;
+    }
 
     public void createTransaction(PaymentTransactionCallback transactionCallback) {
 
@@ -155,6 +159,7 @@ public class PayButton {
                 PaymentData paymentData = new PaymentData();
                 paymentData.merchantId = merchantId;
                 paymentData.terminalId = terminalId;
+                paymentData.customerId = customerId;
                 paymentData.transactionReferenceNumber = transactionReferenceNumber;
                 paymentData.merchantName = response.merchantName;
                 paymentData.is3dsEnabled = response.is3DS;

@@ -2,6 +2,8 @@ package io.paysky.paybutton.ui.base;
 
 import android.app.ProgressDialog;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -44,11 +46,48 @@ public class BaseFragment extends Fragment implements BaseView {
 
     @Override
     public void dismissProgress() {
-        if (isDetached())return;
-        if (progressDialog != null && progressDialog.isShowing()) {
-            progressDialog.dismiss();
-            progressDialog = null;
+        if (progressDialog == null) {
+            return;
         }
+        
+        // Check if fragment is still attached and activity is valid
+        if (isDetached() || getActivity() == null || getActivity().isFinishing()) {
+            progressDialog = null;
+            return;
+        }
+        
+        // Use handler to ensure dismissal happens on UI thread
+        final ProgressDialog dialog = progressDialog;
+        final PaymentActivity currentActivity = activity;
+        progressDialog = null; // Clear reference immediately to prevent double dismissal
+        
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    // Double check activity state before dismissing using stored reference
+                    if (currentActivity == null || currentActivity.isFinishing() || isDetached()) {
+                        return;
+                    }
+                    
+                    // Check if dialog is still showing before dismissing
+                    if (dialog != null && dialog.isShowing()) {
+                        dialog.dismiss();
+                    }
+                } catch (IllegalArgumentException e) {
+                    // Ignore "View not attached to window manager" exception
+                    // This happens when activity/fragment is destroyed during dismissal
+                    // Silently catch and ignore - no need to log
+                } catch (Exception e) {
+                    // Safely handle any other exceptions during dismissal
+                    // Only log if it's not the window manager exception
+                    if (!(e instanceof IllegalArgumentException) || 
+                        !e.getMessage().contains("not attached to window manager")) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     @Override
@@ -57,11 +96,25 @@ public class BaseFragment extends Fragment implements BaseView {
     }
 
     public void showProgress(String message) {
-        if (progressDialog == null) {
+        try {
+            // Check if fragment is still attached and activity is valid
+            if (isDetached() || getActivity() == null || getActivity().isFinishing()) {
+                return;
+            }
+            
+            // Dismiss existing dialog if any
+            if (progressDialog != null && progressDialog.isShowing()) {
+                dismissProgress();
+            }
+            
             progressDialog = AppUtils.createProgressDialog(getActivity(), message);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+        } catch (Exception e) {
+            // Safely handle any exceptions during showing
+            e.printStackTrace();
+            progressDialog = null;
         }
-        progressDialog.setCancelable(false);
-        progressDialog.show();
     }
 
     public String getText(TextView textView) {

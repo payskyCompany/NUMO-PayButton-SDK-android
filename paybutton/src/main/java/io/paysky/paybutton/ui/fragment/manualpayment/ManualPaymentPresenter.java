@@ -60,6 +60,8 @@ class ManualPaymentPresenter extends BasePresenter<ManualPaymentView> {
         paymentRequest.merchantId = merchantId;
         paymentRequest.terminalId = terminalId;
         paymentRequest.returnURL = ApiLinks.PAYMENT_LINK;
+        paymentRequest.isDefaultCard=true;
+        paymentRequest.isSaveCard=true;
         // create secure hash.
         paymentRequest.secureHash = HashGenerator.encode(secureHash, paymentRequest.dateTimeLocalTrxn, merchantId, terminalId);
         // make transaction.

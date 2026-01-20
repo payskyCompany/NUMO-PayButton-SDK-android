@@ -19,6 +19,7 @@ import io.paysky.paybutton.R;
 import io.paysky.paybutton.data.model.PaymentData;
 import io.paysky.paybutton.data.network.ApiConnection;
 import io.paysky.paybutton.ui.base.BaseActivity;
+import io.paysky.paybutton.ui.fragment.listcards.ListCardsFragment;
 import io.paysky.paybutton.ui.fragment.manualpayment.ManualPaymentFragment;
 import io.paysky.paybutton.ui.fragment.qr.QrCodePaymentFragment;
 import io.paysky.paybutton.util.AllURLsStatus;
@@ -189,7 +190,11 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
 
     public void showCardPaymentFragment(Bundle bundle) {
-        replaceFragmentAndRemoveOldFragment(ManualPaymentFragment.class, bundle);
+        if (paymentData.customerId != null) {
+            replaceFragmentAndRemoveOldFragment(ListCardsFragment.class, bundle);
+        } else {
+            replaceFragmentAndRemoveOldFragment(ManualPaymentFragment.class, bundle);
+        }
     }
 
 

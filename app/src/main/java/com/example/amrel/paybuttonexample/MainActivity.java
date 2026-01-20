@@ -39,6 +39,18 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             AllURLsStatus.PACE_PAY};
     int item_position = 0;
 
+    private void setDefaultData() {
+        merchantIdEditText.setText("10081014649");
+        terminalIdEditText.setText("99179395");
+        currencyEditText.setText("434");
+        //secureHashKeyEditText.setText("09a90e81140dcb0d686c09f0036ef910");
+        secureHashKeyEditText.setText("3a488a89b3f7993476c252f017c488bb");
+        spinner_type.setSelection(1);
+        //customerIdEditText.setText("ea4989d7-a09c-463c-b0fa-867847538b85");
+        //customerIdEditText.setText("270f4c284-0afb-4df8-bb04-2113eaf9e1f8");
+        amountEditText.setText("1000");
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -151,6 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         } else {
             languageTextView.setText(io.paysky.paybutton.R.string.arabic);
         }
+        setDefaultData();
     }
 
     @Override

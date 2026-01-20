@@ -18,6 +18,7 @@ public class PaymentData implements Parcelable {
     public String currencyName;
     public String lang;
     public String executedTransactionAmount;
+    public String customerId, customerSession;
 
     public PaymentData() {
 
@@ -40,6 +41,8 @@ public class PaymentData implements Parcelable {
         currencyName = in.readString();
         lang = in.readString();
         executedTransactionAmount = in.readString();
+        this.customerId = in.readString();
+        this.customerSession = in.readString();
     }
 
     public static final Creator<PaymentData> CREATOR = new Creator<PaymentData>() {
@@ -77,5 +80,9 @@ public class PaymentData implements Parcelable {
         parcel.writeString(currencyName);
         parcel.writeString(lang);
         parcel.writeString(executedTransactionAmount);
+        parcel.writeString(customerId);
+//        parcel.writeString("3a88d6df-3cae-43a7-9009-4b92284928bc");
+        parcel.writeString(customerSession);
+
     }
 }

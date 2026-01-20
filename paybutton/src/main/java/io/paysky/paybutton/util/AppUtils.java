@@ -58,9 +58,7 @@ public class AppUtils {
 
 
     public static boolean isInternetAvailable(Context context) {
-        final ConnectivityManager connectivityManager = ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE));
-        return (connectivityManager != null ? connectivityManager.getActiveNetworkInfo() : null)
-                != null && connectivityManager.getActiveNetworkInfo().isConnected();
+        return NetworkChecker.isInternetAvailable(context);
     }
 
     public static ProgressDialog createProgressDialog(Context context, @StringRes int text) {

@@ -11,7 +11,8 @@ buildscript {
     dependencies {
 //        classpath 'com.android.tools.build:gradle:3.2.1'
         classpath 'com.android.tools.build:gradle:8.7.3'
-
+        // Use a Kotlin Gradle plugin version that supports JVM target 21 (required by AGP 8.7)
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21'
     }
 }
 

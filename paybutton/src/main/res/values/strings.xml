@@ -65,11 +65,25 @@
     <string name="failed_load_merchant_data">Authentication failed.</string>
     <string name="cancel">Cancel</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="allow_light_scan">Open camera flash light to scan quickly.</string>
     <string name="invalid_ccv_value">Invalid CVC</string>
     <string name="transaction">Transaction </string>
     <string name="approved">Approved</string>
     <string name="declined">Declined</string>
+
+    <string name="set_your_default_card">Set Your Default Card</string>
+    <string name="back">Back</string>
+    <string name="set_default">Set\nDefault</string>
+    <string name="card_details">Card Details</string>
+    <string name="something_went_wrong">Something went wrong</string>
+    <string name="select_card">Select card</string>
+    <string name="manage_cards">Manage cards</string>
+    <string name="cvv">CVV</string>
+    <string name="cvv_number_required">CVV Number Required</string>
+    <string name="add_new_card">Add New Card</string>
+    <string name="processing">Processing…</string>
+
+
+
+
 </resources>
