@@ -88,9 +88,9 @@ class PaymentProcessingPresenter(
         paymentRequest.dateTimeLocalTrxn = AppUtils.getDateTimeLocalTrxn()
         paymentRequest.merchantId = merchantId
         paymentRequest.terminalId = terminalId
-        paymentRequest.tokenCardId = cardId.toString()
-        paymentRequest.tokenCustomerId = customerId
-        paymentRequest.tokenCustomerSession = customerSessionId
+//        paymentRequest.tokenCardId = cardId.toString()
+//        paymentRequest.tokenCustomerId = customerId
+//        paymentRequest.tokenCustomerSession = customerSessionId
 
         paymentRequest.returnURL = ApiLinks.PAYMENT_LINK
         // create secure hash.

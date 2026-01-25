@@ -19,6 +19,7 @@ import java.util.Locale;
 
 import io.paysky.paybutton.data.model.SuccessfulCardTransaction;
 import io.paysky.paybutton.data.model.SuccessfulWalletTransaction;
+import io.paysky.paybutton.data.network.ApiConnection;
 import io.paysky.paybutton.exception.TransactionException;
 import io.paysky.paybutton.ui.PayButton;
 import io.paysky.paybutton.util.AllURLsStatus;
@@ -44,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         terminalIdEditText.setText("99179395");
         currencyEditText.setText("434");
         //secureHashKeyEditText.setText("09a90e81140dcb0d686c09f0036ef910");
-        secureHashKeyEditText.setText("3a488a89b3f7993476c252f017c488bb");
+        secureHashKeyEditText.setText("39636630633731362D663963322D346362642D386531662D633963303432353936373431");
         spinner_type.setSelection(1);
         //customerIdEditText.setText("ea4989d7-a09c-463c-b0fa-867847538b85");
         //customerIdEditText.setText("270f4c284-0afb-4df8-bb04-2113eaf9e1f8");
@@ -54,6 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        
+        // Initialize Chucker for network debugging
+        ApiConnection.initializeChucker(this);
+        
         setContentView(R.layout.activity_main);
 
 

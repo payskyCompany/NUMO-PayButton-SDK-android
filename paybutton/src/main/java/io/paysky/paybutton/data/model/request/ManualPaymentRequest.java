@@ -89,19 +89,22 @@ public class ManualPaymentRequest  extends BaseRequest{
     @SerializedName("ThreeDSECI")
     public String threeDSECI;
 
-    @SerializedName("TokenCardId")
-    public String tokenCardId;
+    @SerializedName("CardHolderName")
+    public String cardHolderName;
 
-    @SerializedName("TokenCustomerId")
-    public String tokenCustomerId;
-
-    @SerializedName("TokenCustomerSession")
-    public String tokenCustomerSession;
-
-    @SerializedName("IsSaveCard")
-    public Boolean isSaveCard = null;
-
-    @SerializedName("IsDefaultCard")
-    public Boolean isDefaultCard = null;
+//    @SerializedName("TokenCardId")
+//    public String tokenCardId;
+//
+//    @SerializedName("TokenCustomerId")
+//    public String tokenCustomerId;
+//
+//    @SerializedName("TokenCustomerSession")
+//    public String tokenCustomerSession;
+//
+//    @SerializedName("IsSaveCard")
+//    public Boolean isSaveCard = null;
+//
+//    @SerializedName("IsDefaultCard")
+//    public Boolean isDefaultCard = null;
 
 }

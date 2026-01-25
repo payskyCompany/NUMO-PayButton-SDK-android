@@ -190,6 +190,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
 
     public void showCardPaymentFragment(Bundle bundle) {
+
         if (paymentData.customerId != null) {
             replaceFragmentAndRemoveOldFragment(ListCardsFragment.class, bundle);
         } else {

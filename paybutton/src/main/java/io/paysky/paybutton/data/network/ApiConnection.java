@@ -1,6 +1,8 @@
 package io.paysky.paybutton.data.network;
 
+import android.content.Context;
 import android.util.Log;
+
 
 
 import java.util.List;
@@ -45,8 +47,21 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiConnection {
 
+    private static Context applicationContext;
 
     public static String LANG = "en";
+
+    /**
+     * Initialize Chucker with application context.
+     * Call this method in your Application class's onCreate() method.
+     * 
+     * @param context Application context
+     */
+    public static void initializeChucker(Context context) {
+        if (context != null) {
+            applicationContext = context.getApplicationContext();
+        }
+    }
 
     public static void executePayment(ManualPaymentRequest manualPaymentRequest, final ApiResponseListener<ManualPaymentResponse> listener) {
         createConnection().executeManualPayment(manualPaymentRequest)
@@ -270,13 +285,14 @@ public class ApiConnection {
         }
 
         // Build OkHttpClient with interceptors
-        // Order matters: endpoint logger -> language header -> logging interceptor
+        // Order matters: endpoint logger -> language header -> logging interceptor -> chucker
+        // NOTE: Increased timeouts from 30s to 200s to reduce SocketTimeoutException on slow networks
         OkHttpClient.Builder clientBuilder = new OkHttpClient.Builder()
                 .addInterceptor(endpointLogger)  // First: Log endpoint
                 .addInterceptor(languageInterceptor)  // Second: Add language header
-                .connectTimeout(30, TimeUnit.SECONDS)
-                .writeTimeout(30, TimeUnit.SECONDS)
-                .readTimeout(30, TimeUnit.SECONDS);
+                .connectTimeout(200, TimeUnit.SECONDS)
+                .writeTimeout(200, TimeUnit.SECONDS)
+                .readTimeout(200, TimeUnit.SECONDS);
 
         // Add logging interceptor - always add it, but it only logs in DEBUG mode
         // Using addNetworkInterceptor to log actual network calls (after redirects, retries, etc.)

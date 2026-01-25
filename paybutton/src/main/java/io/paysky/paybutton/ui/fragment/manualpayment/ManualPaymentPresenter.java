@@ -54,14 +54,15 @@ class ManualPaymentPresenter extends BasePresenter<ManualPaymentView> {
         paymentRequest.dateExpiration = expiryDate;
         paymentRequest.iSFromPOS = true;
         paymentRequest.pAN = cardNumber;
+        paymentRequest.cardHolderName = cardHolder;
         paymentRequest.systemTraceNr = paymentData.transactionReferenceNumber;
         paymentRequest.MerchantReference = paymentData.transactionReferenceNumber;
         paymentRequest.dateTimeLocalTrxn = AppUtils.getDateTimeLocalTrxn();
         paymentRequest.merchantId = merchantId;
         paymentRequest.terminalId = terminalId;
         paymentRequest.returnURL = ApiLinks.PAYMENT_LINK;
-        paymentRequest.isDefaultCard=true;
-        paymentRequest.isSaveCard=true;
+//        paymentRequest.isDefaultCard=true;
+//        paymentRequest.isSaveCard=true;
         // create secure hash.
         paymentRequest.secureHash = HashGenerator.encode(secureHash, paymentRequest.dateTimeLocalTrxn, merchantId, terminalId);
         // make transaction.
