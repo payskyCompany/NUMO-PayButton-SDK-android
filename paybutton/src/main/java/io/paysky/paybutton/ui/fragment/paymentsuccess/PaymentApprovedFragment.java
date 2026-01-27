@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -85,6 +86,16 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
             }
         });
         receiptManager = new ReceiptManager(view, transactionData, this);
+        requireActivity()
+                .getOnBackPressedDispatcher()
+                .addCallback(getViewLifecycleOwner(),
+                        new OnBackPressedCallback(true) {
+                            @Override
+                            public void handleOnBackPressed() {
+                                // Your custom back logic here
+                                activity.finish();
+                            }
+                        });
     }
 
     private void initView(View view) {

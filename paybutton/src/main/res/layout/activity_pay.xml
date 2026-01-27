@@ -300,9 +300,10 @@
 
                     <ImageView
                         android:id="@+id/iv_powered_by"
-                        android:layout_width="wrap_content"
+                        android:layout_width="@dimen/_100sdp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_vertical"
+                        android:scaleType="fitCenter"
                         android:src="@drawable/logo" />
                 </LinearLayout>
 

@@ -61,7 +61,9 @@ class ListCardsFragment : BaseFragment(), CardsView {
 
         adapter = SavedCardsAdapter(
             onSubmitDataValid = {
-                moveToPaymentProcessing(it.cardId, it.cvv!!)
+                // For 19-digit cards, CVV is not required, pass empty string
+                val cvv = it.cvv ?: ""
+                moveToPaymentProcessing(it.cardId, cvv)
             },
             onChangeItem = {
                 val mHandler = activity.window.decorView.handler

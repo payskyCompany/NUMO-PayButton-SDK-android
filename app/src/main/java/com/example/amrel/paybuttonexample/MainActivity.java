@@ -1,15 +1,21 @@
 package com.example.amrel.paybuttonexample;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
@@ -29,16 +35,22 @@ import io.paysky.paybutton.util.LocaleHelper;
 public class MainActivity extends AppCompatActivity implements View.OnLongClickListener, View.OnClickListener {
 
     //GUI.
-    private EditText merchantIdEditText, terminalIdEditText, amountEditText, secureHashKeyEditText;
+    private EditText customerIdEdittext, merchantIdEditText, terminalIdEditText, amountEditText, secureHashKeyEditText;
     private TextView paymentStatusTextView;
     private TextView languageTextView;
     private EditText currencyEditText;
     private Spinner spinner_type;
 
+    private LinearLayout customerIdLayout ;
+
+
     String[] list_to_show = {"PRODUCTION", "TESTING", "PACE_PAY"};
     AllURLsStatus[] list_to_URLS = {AllURLsStatus.PRODUCTION, AllURLsStatus.STAGINIG,
             AllURLsStatus.PACE_PAY};
     int item_position = 0;
+
+    SharedPreferences sharedPreferences;
+    SharedPreferences.Editor editor;
 
     private void setDefaultData() {
         merchantIdEditText.setText("10081014649");
@@ -50,16 +62,26 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
         //customerIdEditText.setText("ea4989d7-a09c-463c-b0fa-867847538b85");
         //customerIdEditText.setText("270f4c284-0afb-4df8-bb04-2113eaf9e1f8");
         amountEditText.setText("1000");
+
+        String CID = sharedPreferences.getString("customerIdToken", null);
+        if (CID == null)
+            customerIdLayout.setVisibility(GONE);
+        else {
+            customerIdEdittext.setText(CID);
+            customerIdLayout.setVisibility(VISIBLE);
+        }
+
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
-        // Initialize Chucker for network debugging
-        ApiConnection.initializeChucker(this);
-        
+
+        // Note: Chucker initialization moved to MyApplication.onCreate()
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        editor = sharedPreferences.edit();
 
 
         spinner_type = findViewById(R.id.spinner_type);
@@ -84,6 +106,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
 
         // find views.
         TextView payTextView = findViewById(R.id.pay_textView);
+        customerIdEdittext = findViewById(R.id.customer_id_editText);
+        customerIdLayout = findViewById(R.id.customer_id_layout);
         merchantIdEditText = findViewById(R.id.merchant_id_editText);
         terminalIdEditText = findViewById(R.id.terminal_id_editText);
         amountEditText = findViewById(R.id.amount_editText);
@@ -97,6 +121,9 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             String merchantId = merchantIdEditText.getText().toString().trim();
             String amount = amountEditText.getText().toString().trim();
             String secureHashKey = secureHashKeyEditText.getText().toString().trim();
+            String customerId = sharedPreferences.getString("customerIdToken", "");
+//            String customerId = "1d967220-7398-4699-b7be-40f8a5ae09fc";
+
 
             boolean hasErrors = false;
             if (terminalId.isEmpty()) {
@@ -125,6 +152,8 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
             PayButton payButton = new PayButton(MainActivity.this);
             payButton.setMerchantId(merchantId); // Merchant id
             payButton.setTerminalId(terminalId); // Terminal  id
+            if (!customerId.isEmpty())
+                payButton.setCustomerId(customerId);
             payButton.setAmount(Double.parseDouble(amount)); // Amount
             String a = currencyEditText.getText().toString();
             if (a.isEmpty()) {
@@ -141,6 +170,12 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
                 @Override
                 public void onCardTransactionSuccess(SuccessfulCardTransaction cardTransaction) {
                     paymentStatusTextView.setText(cardTransaction.toString());
+                    if (cardTransaction.tokenCustomerId != null && !cardTransaction.tokenCustomerId.isEmpty()) {
+                        Log.v("Customer Id: ", cardTransaction.tokenCustomerId);
+                        editor.putString("customerIdToken", cardTransaction.tokenCustomerId).commit();
+                        customerIdEdittext.setText(cardTransaction.tokenCustomerId);
+                        customerIdLayout.setVisibility(VISIBLE);
+                    }
                 }
 
                 @Override

@@ -11,11 +11,11 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:orientation="horizontal"
-        android:paddingHorizontal="@dimen/_16sdp">
+        android:paddingHorizontal="@dimen/_12sdp">
 
         <RadioButton
             android:id="@+id/card_selected_radio_button"
-            android:layout_width="@dimen/_35sdp"
+            android:layout_width="@dimen/_30sdp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:button="@drawable/radio_button_states" />
@@ -23,7 +23,7 @@
         <androidx.appcompat.widget.AppCompatImageView
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+            android:layout_weight=".8"
             app:tint="@color/accentColor"
             app:tintMode="src_in"
             app:srcCompat="@drawable/ic_card" />
@@ -32,7 +32,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
-            android:layout_weight="3.5"
+            android:layout_weight="3.4"
             android:orientation="vertical">
 
             <TextView
@@ -54,8 +54,8 @@
             android:id="@+id/ccv_editText1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/_10sdp"
-            android:layout_weight="2"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_weight="2.2"
             android:background="@drawable/cvv_border_background"
             android:drawableEnd="@drawable/ic_cvv"
             android:drawablePadding="@dimen/_10sdp"

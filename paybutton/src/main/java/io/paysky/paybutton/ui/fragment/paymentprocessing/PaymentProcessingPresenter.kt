@@ -88,9 +88,9 @@ class PaymentProcessingPresenter(
         paymentRequest.dateTimeLocalTrxn = AppUtils.getDateTimeLocalTrxn()
         paymentRequest.merchantId = merchantId
         paymentRequest.terminalId = terminalId
-//        paymentRequest.tokenCardId = cardId.toString()
-//        paymentRequest.tokenCustomerId = customerId
-//        paymentRequest.tokenCustomerSession = customerSessionId
+        paymentRequest.tokenCardId = cardId.toString()
+        paymentRequest.tokenCustomerId = customerId
+        paymentRequest.tokenCustomerSession = customerSessionId
 
         paymentRequest.returnURL = ApiLinks.PAYMENT_LINK
         // create secure hash.
@@ -123,7 +123,7 @@ class PaymentProcessingPresenter(
                             bundle.putString("opened_by", "manual_payment")
                             view.showPaymentFailedFragment(bundle)
                         } else {
-                            if (response?.actionCode == null || response.actionCode.isEmpty() || response.actionCode != "000") {
+                            if (response?.actionCode == null || response.actionCode.isEmpty() || response.actionCode != "00") {
                                 val transactionException = TransactionException()
                                 transactionException.errorMessage = response?.message
                                 TransactionManager.setTransactionException(transactionException)
@@ -154,7 +154,7 @@ class PaymentProcessingPresenter(
                                 view.showTransactionApprovedFragment(
                                     transactionNo = response.transactionNo,
                                     authCode = response.authCode,
-                                    receiptNumber = response.receiptNumber,
+                                    receiptNumber = if (response.receiptNumber!=null) response.receiptNumber else "" ,
                                     cardHolder = "cardHolder",
                                     cardNumber = "cardNumber",
                                     systemReference = response.systemReference.toString() + "",

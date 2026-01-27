@@ -9,5 +9,8 @@ data class UpdateCardsRequest(
     @SerializedName("MerchantId") val merchantId: String,
     @SerializedName("TerminalId") val terminalId: String,
     @SerializedName("SecureHash") var secureHash: String
-)
+) {
+    // Explicit getter for Java compatibility
+    fun getFakeCardToken(): String = cardToken
+}
 

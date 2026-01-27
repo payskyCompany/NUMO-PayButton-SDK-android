@@ -11,5 +11,6 @@
     <string name="environment_type">Testing URLs</string>
     <string name="secure_hash_key">SecureHash</string>
     <string name="secret_key">Secrect key</string>
+    <string name="customer_id">Customer ID</string>
 
 </resources>

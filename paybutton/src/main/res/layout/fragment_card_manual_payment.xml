@@ -206,7 +206,29 @@
                         app:tint="#EAC604" />
                 </LinearLayout>
 
+
+
             </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/save_for_future_checkbox"
+                android:layout_marginTop="@dimen/_20sdp"
+                android:button="@android:color/transparent"
+                android:drawableStart="@drawable/checkbox_state"
+                android:drawablePadding="@dimen/_10sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:text="@string/save_for_future_use"
+                android:textColor="?android:textColorHint" />
+
+            <androidx.appcompat.widget.AppCompatCheckBox
+                android:id="@+id/set_as_default_checkbox"
+                android:layout_marginTop="@dimen/_18sdp"
+                android:button="@android:color/transparent"
+                android:drawableStart="@drawable/checkbox_state"
+                android:drawablePadding="@dimen/_10sdp"
+                android:text="@string/set_as_default"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:textColor="?android:textColorHint" />
 
             <Button
                 android:id="@+id/proceed_button"

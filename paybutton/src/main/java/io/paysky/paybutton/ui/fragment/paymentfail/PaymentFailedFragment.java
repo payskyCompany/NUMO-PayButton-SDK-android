@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -61,6 +62,17 @@ public class PaymentFailedFragment extends BaseFragment implements View.OnClickL
         });
         initView(view);
 
+        requireActivity()
+                .getOnBackPressedDispatcher()
+                .addCallback(getViewLifecycleOwner(),
+                        new OnBackPressedCallback(true) {
+                            @Override
+                            public void handleOnBackPressed() {
+                                // Your custom back logic here
+                                activity.finish();
+                            }
+                        });
+
     }
 
     private void initView(View view) {
@@ -91,4 +103,5 @@ public class PaymentFailedFragment extends BaseFragment implements View.OnClickL
             activity.showManualPayment();
         }
     }
+
 }

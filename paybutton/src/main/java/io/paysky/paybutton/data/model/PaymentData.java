@@ -81,7 +81,6 @@ public class PaymentData implements Parcelable {
         parcel.writeString(lang);
         parcel.writeString(executedTransactionAmount);
         parcel.writeString(customerId);
-//        parcel.writeString("3a88d6df-3cae-43a7-9009-4b92284928bc");
         parcel.writeString(customerSession);
 
     }

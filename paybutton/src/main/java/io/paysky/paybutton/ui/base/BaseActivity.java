@@ -156,6 +156,32 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
                 .showAgreeButton(R.string.ok, null).showDialog();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Dismiss any showing progress dialog to prevent WindowLeaked error
+        dismissProgressSafely();
+    }
 
+    /**
+     * Safely dismiss progress dialog without checks - used during cleanup
+     */
+    private void dismissProgressSafely() {
+        if (progressDialog != null) {
+            final ProgressDialog dialog = progressDialog;
+            progressDialog = null; // Clear reference immediately
+            
+            try {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            } catch (IllegalArgumentException e) {
+                // Ignore "View not attached to window manager" exception
+                // This is expected when activity is being destroyed
+            } catch (Exception e) {
+                // Ignore any other exceptions during cleanup
+            }
+        }
+    }
 
 }

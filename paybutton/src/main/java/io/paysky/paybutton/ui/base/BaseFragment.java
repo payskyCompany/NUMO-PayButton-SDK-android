@@ -136,4 +136,39 @@ public class BaseFragment extends Fragment implements BaseView {
     public boolean isEmpty(String text) {
         return text.isEmpty();
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        // Dismiss dialog in onDestroyView to prevent WindowLeaked error
+        dismissProgressSafely();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        // Final cleanup - dismiss any remaining dialogs
+        dismissProgressSafely();
+    }
+
+    /**
+     * Safely dismiss progress dialog without checks - used during cleanup
+     */
+    private void dismissProgressSafely() {
+        if (progressDialog != null) {
+            final ProgressDialog dialog = progressDialog;
+            progressDialog = null; // Clear reference immediately
+            
+            try {
+                if (dialog.isShowing()) {
+                    dialog.dismiss();
+                }
+            } catch (IllegalArgumentException e) {
+                // Ignore "View not attached to window manager" exception
+                // This is expected when activity/fragment is being destroyed
+            } catch (Exception e) {
+                // Ignore any other exceptions during cleanup
+            }
+        }
+    }
 }

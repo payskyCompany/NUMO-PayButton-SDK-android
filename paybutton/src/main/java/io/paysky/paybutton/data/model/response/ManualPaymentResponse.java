@@ -33,7 +33,7 @@ public class ManualPaymentResponse {
     public String networkReference;
 
     @SerializedName("ReceiptNumber")
-    public String receiptNumber;
+    public String receiptNumber = null;
 
     @SerializedName("RefNumber")
     public String refNumber;
@@ -49,6 +49,9 @@ public class ManualPaymentResponse {
 
     @SerializedName("ChallengeRequired")
     public boolean challengeRequired;
+
+    @SerializedName("TokenCustomerId")
+    public String tokenCustomerId;
 
 
 }

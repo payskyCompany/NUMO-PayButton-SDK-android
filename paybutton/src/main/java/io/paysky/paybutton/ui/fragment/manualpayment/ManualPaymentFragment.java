@@ -9,6 +9,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -54,6 +56,8 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
     private ImageView scanCardImageView;
     private String ccv;
 
+    private CheckBox saveForLaterCheckBox, setDefaultCheckBox;
+
     private static boolean isFirst = true;
 
     static final int MY_SCAN_REQUEST_CODE = 1;
@@ -96,6 +100,8 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
 
         ImageView cardTypeImageView = view.findViewById(R.id.card_type_imageView);
         linearCVV = view.findViewById(R.id.linearCVV);
+        saveForLaterCheckBox = view.findViewById(R.id.save_for_future_checkbox);
+        setDefaultCheckBox = view.findViewById(R.id.set_as_default_checkbox);
         cardNumberEditText = view.findViewById(R.id.card_number_editText);
         cardNumberEditText.setCardTypeImage(cardTypeImageView);
         cardNumberEditText.addTextChangedListener(new TextWatcher() {
@@ -135,6 +141,24 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
         scanCardImageView = view.findViewById(R.id.scan_camera_imageView);
         scanCardImageView.setOnClickListener(this);
         LocaleHelper.changeAppLanguage(getContext());
+
+        saveForLaterCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (!b) {
+                    setDefaultCheckBox.setChecked(false);
+                }
+            }
+        });
+
+        setDefaultCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (b) {
+                    saveForLaterCheckBox.setChecked(true);
+                }
+            }
+        });
     }
 
 
@@ -161,7 +185,8 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
 
         AppUtils.hideKeyboard(proceedButton);
 
-        presenter.makePayment(cardNumber, expireDate, cardOwnerName, ccv);
+        presenter.makePayment(cardNumber, expireDate, cardOwnerName, ccv,
+                setDefaultCheckBox.isChecked(), saveForLaterCheckBox.isChecked());
     }
 
 
