@@ -130,23 +130,36 @@ public class BaseActivity extends AppCompatActivity implements BaseView {
 
 
     protected void replaceFragment(Class<? extends Fragment> fragmentClass, Bundle bundle, boolean addOldToBackStack) {
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        if (isFinishing() || isDestroyed()) {
+            return;
+        }
         Fragment fragment = null;
         try {
             fragment = fragmentClass.newInstance();
         } catch (InstantiationException e) {
             e.printStackTrace();
+            return;
         } catch (IllegalAccessException e) {
             e.printStackTrace();
+            return;
         }
+        if (fragment == null) {
+            return;
+        }
+        // setArguments() must be called before the fragment is added to the transaction
+        if (bundle != null) {
+            fragment.setArguments(bundle);
+        }
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         fragmentTransaction.replace(R.id.fragment_frame, fragment);
         if (addOldToBackStack) {
             fragmentTransaction.addToBackStack(null);
         }
-        if (bundle != null) {
-            fragment.setArguments(bundle);
+        if (getSupportFragmentManager().isStateSaved()) {
+            fragmentTransaction.commitAllowingStateLoss();
+        } else {
+            fragmentTransaction.commit();
         }
-        fragmentTransaction.commit();
     }
 
     @Override

@@ -31,6 +31,8 @@ import io.paysky.paybutton.data.model.response.SendReceiptByMailResponse;
 import io.paysky.paybutton.data.model.response.TransactionStatusResponse;
 import io.paysky.paybutton.data.model.response.TransactionsItem;
 import io.paysky.paybutton.data.model.response.UpdateCardsResponse;
+import com.chuckerteam.chucker.api.ChuckerInterceptor;
+
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -297,6 +299,11 @@ public class ApiConnection {
         // Add logging interceptor - always add it, but it only logs in DEBUG mode
         // Using addNetworkInterceptor to log actual network calls (after redirects, retries, etc.)
         clientBuilder.addNetworkInterceptor(loggingInterceptor);
+
+        // Chucker: HTTP inspector UI (no-op in release builds)
+        if (applicationContext != null) {
+            clientBuilder.addInterceptor(new ChuckerInterceptor(applicationContext));
+        }
 
         OkHttpClient client = clientBuilder.build();
 

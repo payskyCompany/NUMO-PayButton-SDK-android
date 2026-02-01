@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "900116422833",
+    "project_id": "paybuttonsdk",
+    "storage_bucket": "paybuttonsdk.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:900116422833:android:59640a5f9b63b9ad4dc290",
+        "android_client_info": {
+          "package_name": "com.example.amrel.paybuttonexample"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_6t3OdFwsnQPOEIpOXOFttzNzXjq5h80"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

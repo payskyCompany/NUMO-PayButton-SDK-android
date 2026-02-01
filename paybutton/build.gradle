@@ -72,6 +72,10 @@ dependencies {
     implementation 'com.google.android.material:material:1.1.0'
 
     implementation 'io.card:android-sdk:5.5.1'
+
+    // Chucker - HTTP inspector (real in debug, no-op in release)
+    debugImplementation "com.github.chuckerteam.chucker:library:4.0.0"
+    releaseImplementation "com.github.chuckerteam.chucker:library-no-op:4.0.0"
 }
 
 afterEvaluate {

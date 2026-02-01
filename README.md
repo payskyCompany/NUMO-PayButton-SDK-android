@@ -150,6 +150,53 @@ Example:-
 
 ```
 
+### Tokenization (Saved Cards)
+
+Use these steps so returning users can pay with a saved card instead of entering card details every time.
+
+---
+
+#### 1. First-time user (no saved cards yet)
+
+- Do **not** call `setCustomerId`.
+- User completes payment by entering card details.
+- On success, in `onCardTransactionSuccess`, read `cardTransaction.tokenCustomerId`.
+- **Store** `tokenCustomerId` in your app (e.g. SharedPreferences or your backend) and associate it with the logged-in user. Use this value as the **CustomerId** for that user on later payments.
+
+```java
+@Override
+public void onCardTransactionSuccess(SuccessfulCardTransaction cardTransaction) {
+    if (cardTransaction.tokenCustomerId != null && !cardTransaction.tokenCustomerId.isEmpty()) {
+        // Save for next time (e.g. SharedPreferences, your backend)
+        saveCustomerIdForUser(cardTransaction.tokenCustomerId);
+    }
+}
+```
+
+---
+
+#### 2. Returning user (pay with saved cards)
+
+- Before `createTransaction()`, call `payButton.setCustomerId(savedCustomerId)` with the stored **CustomerId** from step 1.
+- User will see their **saved cards**, choose one, enter CVV, and complete payment.
+
+```java
+String savedCustomerId = getCustomerIdForCurrentUser(); // your stored value
+if (savedCustomerId != null && !savedCustomerId.isEmpty()) {
+    payButton.setCustomerId(savedCustomerId);
+}
+payButton.createTransaction(callback);
+```
+
+---
+
+#### Summary
+
+| Step | What you do |
+|------|--------------|
+| **First payment** | Do not set CustomerId. User enters card. On success, save `cardTransaction.tokenCustomerId` for this user. |
+| **Later payments** | Call `payButton.setCustomerId(savedCustomerId)` before `createTransaction()`. User sees saved cards and pays with one + CVV. |
+
 ### Resolving conflict
 
 Because we use some of libraries like Okhttp, retrofit , EventBus and you may use them with
