@@ -79,15 +79,9 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
         super.onViewCreated(view, savedInstanceState);
         initView(view);
         activity.setHeaderIcon(R.drawable.ic_close);
-        activity.setHeaderIconClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                activity.finish();
-            }
-        });
+        activity.setHeaderIconClickListener(view1 -> activity.finish());
         receiptManager = new ReceiptManager(view, transactionData, this);
-        requireActivity()
-                .getOnBackPressedDispatcher()
+        activity.getOnBackPressedDispatcher()
                 .addCallback(getViewLifecycleOwner(),
                         new OnBackPressedCallback(true) {
                             @Override
@@ -96,6 +90,7 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
                                 activity.finish();
                             }
                         });
+
     }
 
     private void initView(View view) {

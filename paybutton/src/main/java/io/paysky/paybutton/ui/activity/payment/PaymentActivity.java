@@ -15,6 +15,8 @@ import androidx.appcompat.app.ActionBar;
 import androidx.fragment.app.Fragment;
 
 import io.paysky.paybutton.R;
+import io.paysky.paybutton.ui.fragment.paymentfail.PaymentFailedFragment;
+import io.paysky.paybutton.ui.fragment.paymentsuccess.PaymentApprovedFragment;
 
 import io.paysky.paybutton.data.model.PaymentData;
 import io.paysky.paybutton.data.network.ApiConnection;
@@ -317,6 +319,11 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
     @Override
     public void onBackPressed() {
+        Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_frame);
+        if (currentFragment instanceof PaymentFailedFragment || currentFragment instanceof PaymentApprovedFragment) {
+            finish();
+            return;
+        }
         if (getSupportFragmentManager().getBackStackEntryCount() > 0) {
             getSupportFragmentManager().popBackStack();
         } else {
@@ -333,6 +340,8 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         qrPaymentLayout.setVisibility(View.GONE);
         cardPaymentLayout.setVisibility(View.GONE);
     }
+
+
 
 
 }

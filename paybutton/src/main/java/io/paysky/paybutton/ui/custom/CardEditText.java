@@ -60,7 +60,7 @@ public class CardEditText extends AppCompatEditText implements TextWatcher {
         String s = getText().toString().replace(" ", "").trim();
         int cardIcon = R.drawable.card_icon;
         if (s.startsWith("4") || s.matches(CardPattern.VISA)) {
-//            cardIcon = R.drawable.vi;
+            cardIcon = R.drawable.visa_logo;
             type = "Visa";
         } else if (s.startsWith("6") || s.startsWith("8") || s.matches(CardPattern.NOMO)) {
             cardIcon = R.drawable.nomo;
@@ -70,7 +70,7 @@ public class CardEditText extends AppCompatEditText implements TextWatcher {
                 || s.matches(CardPattern.MASTERCARD)
                 || s.matches(CardPattern.MASTERCARD_VALID)
         ) {
-//            cardIcon = R.drawable.mc;
+            cardIcon = R.drawable.master_logo;
             type = "MasterCard";
         } else if (s.matches(CardPattern.AMERICAN_EXPRESS)) {
 //            cardIcon = R.drawable.am;
