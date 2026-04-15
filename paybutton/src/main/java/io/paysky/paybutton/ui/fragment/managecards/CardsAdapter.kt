@@ -36,7 +36,9 @@ class CardsAdapter(
                         cardsList[selectedItemPosition] =
                             cardsList[selectedItemPosition].copy(isDefaultCard = false)
                         notifyItemChanged((selectedItemPosition))
-                        onChangeDefaultItem(cardItem, position)
+                        val index = cardsList.indexOf(cardItem)
+                        if (index > -1)
+                            onChangeDefaultItem(cardItem, index)
                     }
                 }
             }

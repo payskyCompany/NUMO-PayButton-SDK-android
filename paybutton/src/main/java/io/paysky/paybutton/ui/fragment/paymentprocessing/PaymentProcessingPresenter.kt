@@ -153,8 +153,8 @@ class PaymentProcessingPresenter(
                                 TransactionManager.setCardTransaction(cardTransaction)
                                 view.showTransactionApprovedFragment(
                                     transactionNo = response.transactionNo,
-                                    authCode = response.authCode,
-                                    receiptNumber = if (response.receiptNumber!=null) response.receiptNumber else "" ,
+                                    authCode = if (response.authCode != null) response.authCode else "",
+                                    receiptNumber = if (response.receiptNumber != null) response.receiptNumber else "",
                                     cardHolder = "cardHolder",
                                     cardNumber = "cardNumber",
                                     systemReference = response.systemReference.toString() + "",
