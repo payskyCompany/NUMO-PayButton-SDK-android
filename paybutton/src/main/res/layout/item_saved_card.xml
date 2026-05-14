@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/_24sdp"
+    android:layoutDirection="ltr"
     android:orientation="vertical">
 
     <LinearLayout
@@ -56,11 +57,13 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_8sdp"
             android:layout_weight="2.2"
-            android:background="@drawable/cvv_border_background"
+            android:background="@drawable/rectengle_drawable"
             android:drawableEnd="@drawable/ic_cvv"
             android:drawablePadding="@dimen/_10sdp"
             android:hint="@string/cvv"
             android:inputType="number"
+            android:textColorHint="#696E72"
+            android:textColor="#696E72"
             android:maxLength="3"
             android:paddingHorizontal="@dimen/_8sdp"
             android:paddingVertical="@dimen/_8sdp"

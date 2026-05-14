@@ -173,6 +173,7 @@ public class PayButton {
                 paymentData.amount = amount;
                 paymentData.amountFormatted = amount + "";
                 paymentData.paymentMethod = response.paymentMethod;
+                paymentData.isTokenized = response.isTokenized;
                 paymentData.secureHashKey = merchantSecureHash;
                 paymentData.lang = lang;
                 String[] c = {paymentData.currencyCode};

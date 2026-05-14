@@ -6,10 +6,13 @@
     <string name="amount">المبلغ</string>
     <string name="currency">العملة</string>
     <string name="pay">ادفع</string>
-    <string name="testing_type">Testing Environment</string>
+    <string name="testing_type">بيئة الاختبار</string>
+    <string name="secure_hash_key">مفتاح التجزئة الآمن (SecureHash)</string>
     <string name="environment_type">الرابط</string>
     <string name="required">حقل مطلوب</string>
-    <string name="secure_hash_key">SecureHash</string>
     <string name="english">English</string>
+
+    <string name="secret_key">المفتاح السري</string>
+    <string name="customer_id">معرف العميل</string>
 
 </resources>

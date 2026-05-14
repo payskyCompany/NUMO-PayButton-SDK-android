@@ -14,7 +14,8 @@ public class PaymentData implements Parcelable {
     public String transactionReferenceNumber;
     public boolean is3dsEnabled;
     public int paymentMethod;
-    public boolean isTahweel, isVisa;
+    public boolean isTahweel, isVisa,isTokenized;
+
     public String currencyName;
     public String lang;
     public String executedTransactionAmount;
@@ -43,6 +44,7 @@ public class PaymentData implements Parcelable {
         executedTransactionAmount = in.readString();
         this.customerId = in.readString();
         this.customerSession = in.readString();
+        isTokenized = in.readByte() != 0;
     }
 
     public static final Creator<PaymentData> CREATOR = new Creator<PaymentData>() {
@@ -82,6 +84,7 @@ public class PaymentData implements Parcelable {
         parcel.writeString(executedTransactionAmount);
         parcel.writeString(customerId);
         parcel.writeString(customerSession);
+        parcel.writeByte((byte) (isTokenized ? 1 : 0));
 
     }
 }

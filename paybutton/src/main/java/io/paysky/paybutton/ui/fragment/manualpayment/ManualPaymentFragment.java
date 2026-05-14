@@ -159,6 +159,23 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
                 }
             }
         });
+
+        PaymentData paymentData = getArguments() != null
+                ? getArguments().getParcelable(AppConstant.BundleKeys.PAYMENT_DATA)
+                : null;
+        applySaveCardCheckboxesVisibility(paymentData);
+    }
+
+    private void applySaveCardCheckboxesVisibility(PaymentData paymentData) {
+        boolean show = paymentData != null
+                && (paymentData.isTokenized || paymentData.paymentMethod == 1);
+        int visibility = show ? View.VISIBLE : View.GONE;
+        saveForLaterCheckBox.setVisibility(visibility);
+        setDefaultCheckBox.setVisibility(visibility);
+        if (!show) {
+            saveForLaterCheckBox.setChecked(false);
+            setDefaultCheckBox.setChecked(false);
+        }
     }
 
 
@@ -185,8 +202,15 @@ public class ManualPaymentFragment extends BaseFragment implements ManualPayment
 
         AppUtils.hideKeyboard(proceedButton);
 
+        PaymentData paymentData = getArguments() != null
+                ? getArguments().getParcelable(AppConstant.BundleKeys.PAYMENT_DATA)
+                : null;
+        boolean saveCardOptionsVisible = paymentData != null
+                && (paymentData.isTokenized || paymentData.paymentMethod == 1);
+
         presenter.makePayment(cardNumber, expireDate, cardOwnerName, ccv,
-                setDefaultCheckBox.isChecked(), saveForLaterCheckBox.isChecked());
+                saveCardOptionsVisible && setDefaultCheckBox.isChecked(),
+                saveCardOptionsVisible && saveForLaterCheckBox.isChecked());
     }
 
 

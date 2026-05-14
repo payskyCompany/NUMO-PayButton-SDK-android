@@ -232,9 +232,10 @@
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
             android:drawableEnd="@drawable/ic_language"
+            android:drawableTint="@color/black"
             android:drawablePadding="8dp"
             android:text="@string/arabic"
-            android:textColor="#2D3134"
+            android:textColor="@color/black"
             android:textSize="@dimen/_13ssp" />
 
 

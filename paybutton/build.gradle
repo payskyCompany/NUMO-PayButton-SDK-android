@@ -90,3 +90,24 @@ afterEvaluate {
         }
     }
 }
+
+// Creates a ZIP of the paybutton module source code/resources to import as a module in another app.
+tasks.register("sourceCodeZip", Zip) {
+    group = "distribution"
+    description = "Create a source ZIP of the paybutton SDK module"
+
+    archiveFileName.set("paybutton-sdk-source.zip")
+    destinationDirectory.set(rootProject.layout.buildDirectory.dir("outputs"))
+
+    from(projectDir) {
+        include "build.gradle"
+        include "proguard-rules.pro"
+        include "libs/**"
+        include "src/**"
+
+        exclude "build/**"
+        exclude ".gradle/**"
+        exclude "**/*.iml"
+        exclude "**/.DS_Store"
+    }
+}
