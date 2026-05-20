@@ -41,7 +41,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     private LinearLayout qrPaymentLayout;
     private TextView currencyTextView;
     private TextView amountTextView;
-    private TextView merchantNameTextView, tvMerchantText,tvPowerByText, tvAmountText, tvTitle;
+    private TextView merchantNameTextView, tvMerchantText, tvPowerByText, tvAmountText, tvTitle;
     private ImageView poweredByImageView;
     //Objects,
     public static Bitmap qrBitmap;
@@ -192,7 +192,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
 
 
     public void showCardPaymentFragment(Bundle bundle) {
-        if (paymentData.customerId != null) {
+        if (paymentData.customerId != null && paymentData.isTokenized) {
             replaceFragmentAndRemoveOldFragment(ListCardsFragment.class, bundle);
         } else {
             replaceFragmentAndRemoveOldFragment(ManualPaymentFragment.class, bundle);
@@ -340,8 +340,6 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
         qrPaymentLayout.setVisibility(View.GONE);
         cardPaymentLayout.setVisibility(View.GONE);
     }
-
-
 
 
 }
