@@ -22,13 +22,13 @@ public class ApiLinks {
     public static final String DELETE_TOKENIZED_CARD = CUBE_GATEWAY + API + "RemoveToken";
     public static final String CHANGE_DEFAULT_CARD = CUBE_GATEWAY + API + "ChangeDefaultToken";
 
-//    public static final String TNPG_LINK = "https://tnpg.moamalat.net/";
-//    public static final String TNPG_LINK = "https://local.yalla.online:7006/";
+    public static final String TNPG_LINK = "https://tnpg.moamalat.net/";
+    //    public static final String TNPG_LINK = "https://local.yalla.online:7006/";
 //    public static final String TNPG_LINK = "https://10.119.10.196/";
-    public static final String TNPG_LINK = "https://unpg.moamalat.net/";
+//    public static final String TNPG_LINK = "https://unpg.moamalat.net/";
     public static final String NPG_LINK = "https://npg.moamalat.net/";
     public static final String PACE_PAY = "https://adcb.paysky.io/";
 
-    public static String PAYMENT_LINK = NPG_LINK;
+    public static String PAYMENT_LINK = TNPG_LINK;
 }
 

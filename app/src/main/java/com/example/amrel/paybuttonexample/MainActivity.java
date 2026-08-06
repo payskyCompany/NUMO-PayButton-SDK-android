@@ -53,9 +53,9 @@ public class MainActivity extends AppCompatActivity implements View.OnLongClickL
     SharedPreferences.Editor editor;
 
     private void setDefaultData() {
-        merchantIdEditText.setText("10046213159");
-        terminalIdEditText.setText("98214673");
-        secureHashKeyEditText.setText("accc1f19738ddbfc00ed5f84fd88e3aa");
+        merchantIdEditText.setText("11086828329");
+        terminalIdEditText.setText("44442092");
+        secureHashKeyEditText.setText("c5f0681c3c61caa40c8dbe23a9feda69");
 
 //        merchantIdEditText.setText("11086828329");
 //        terminalIdEditText.setText("44442092");
