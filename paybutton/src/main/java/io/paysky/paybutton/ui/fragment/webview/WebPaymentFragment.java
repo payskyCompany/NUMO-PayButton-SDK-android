@@ -173,6 +173,7 @@ public class WebPaymentFragment extends BaseFragment implements WebPaymentView {
                             cardTransaction.merchantId = paymentData.merchantId;
                             cardTransaction.terminalId = paymentData.terminalId;
                             cardTransaction.amount = paymentData.executedTransactionAmount;
+                            cardTransaction.tokenCustomerId = jsonObject.getString("TokenCustomerId");
                             TransactionManager.setCardTransaction(cardTransaction);
 
 
