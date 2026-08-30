@@ -173,7 +173,10 @@ public class WebPaymentFragment extends BaseFragment implements WebPaymentView {
                             cardTransaction.merchantId = paymentData.merchantId;
                             cardTransaction.terminalId = paymentData.terminalId;
                             cardTransaction.amount = paymentData.executedTransactionAmount;
-                            cardTransaction.tokenCustomerId = jsonObject.getString("TokenCustomerId");
+                            // TokenCustomerId is only present when a new tokenization
+                            // happened; fall back to the customerId the payment started with.
+                            cardTransaction.tokenCustomerId = jsonObject.optString("TokenCustomerId",
+                                    paymentData.customerId != null ? paymentData.customerId : "");
                             TransactionManager.setCardTransaction(cardTransaction);
 
 

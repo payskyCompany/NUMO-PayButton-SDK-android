@@ -24,6 +24,7 @@ import io.paysky.paybutton.ui.base.BaseActivity;
 import io.paysky.paybutton.ui.fragment.listcards.ListCardsFragment;
 import io.paysky.paybutton.ui.fragment.manualpayment.ManualPaymentFragment;
 import io.paysky.paybutton.ui.fragment.qr.QrCodePaymentFragment;
+import io.paysky.paybutton.ui.fragment.webview.WebPaymentFragment;
 import io.paysky.paybutton.util.AllURLsStatus;
 import io.paysky.paybutton.util.AppConstant;
 import io.paysky.paybutton.util.AppUtils;
@@ -321,6 +322,12 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     public void onBackPressed() {
         Fragment currentFragment = getSupportFragmentManager().findFragmentById(R.id.fragment_frame);
         if (currentFragment instanceof PaymentFailedFragment || currentFragment instanceof PaymentApprovedFragment) {
+            finish();
+            return;
+        }
+        // During 3DS, popping the back stack would resurrect a stale fragment
+        // under the webview; close the sheet like the header back button does.
+        if (currentFragment instanceof WebPaymentFragment) {
             finish();
             return;
         }

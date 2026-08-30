@@ -7,4 +7,5 @@ interface CardsView : BaseView {
     fun showToastError(message: String)
     fun showToastErrorAndFinish(error: Int)
     fun showSavedCards(cardsLists: List<CardItem>)
+    fun onCustomerNotFound()
 }

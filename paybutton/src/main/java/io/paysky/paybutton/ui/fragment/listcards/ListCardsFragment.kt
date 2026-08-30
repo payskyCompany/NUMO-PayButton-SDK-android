@@ -45,6 +45,9 @@ class ListCardsFragment : BaseFragment(), CardsView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        // Stay invisible until the session/cards result arrives; otherwise this
+        // screen flashes briefly before falling back to manual card entry.
+        view.visibility = View.INVISIBLE
         activity = getActivity() as PaymentActivity
         activity.setHeaderIconClickListener { activity.finish() }
 //        activity.showPaymentInfoAndOptions()
@@ -114,7 +117,19 @@ class ListCardsFragment : BaseFragment(), CardsView {
     }
 
     override fun showToastError(message: String) {
-//        ToastUtils.showLongToast(requireContext(), message)
+        if (!isAdded) return
+        ToastUtils.showLongToast(context, message)
+        // Never leave the user on an empty cards screen — card entry still works.
+        goToManualPaymentFragment(addToBackStack = false)
+    }
+
+    override fun onCustomerNotFound() {
+        if (!isAdded) return
+        // The backend doesn't know this customer id, so treat it as a customer
+        // with no saved cards. Drop the id so it is not sent as TokenCustomerId
+        // in PayByCard; a save-card payment will get a fresh one from the backend.
+        presenter.paymentData?.customerId = null
+        goToManualPaymentFragment(addToBackStack = false)
     }
 
     override fun showToastErrorAndFinish(error: Int) {
@@ -126,6 +141,8 @@ class ListCardsFragment : BaseFragment(), CardsView {
         adapter.setItems(cardsLists)
         if (cardsLists.isEmpty()) {
             goToManualPaymentFragment(addToBackStack = false)
+        } else {
+            view?.visibility = View.VISIBLE
         }
     }
 }

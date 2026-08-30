@@ -3,6 +3,9 @@ package io.paysky.paybutton.data.model.response
 import com.google.gson.annotations.SerializedName
 
 data class GetSessionResponse(
+    @SerializedName("ActionCode")
+    val actionCode: String?,
+
     @SerializedName("Message")
     val message: String?,
 

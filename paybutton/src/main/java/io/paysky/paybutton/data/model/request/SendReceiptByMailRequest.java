@@ -31,6 +31,6 @@ public class SendReceiptByMailRequest extends BaseRequest{
 	@SerializedName("TransactionChannel")
 	public String transactionChannel;
 
-	@SerializedName("TransactionNo")
+	@SerializedName("TransactionId")
 	public String transactionId;
 }

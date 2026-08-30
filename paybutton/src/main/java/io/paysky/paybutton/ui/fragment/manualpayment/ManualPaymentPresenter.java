@@ -29,7 +29,7 @@ class ManualPaymentPresenter extends BasePresenter<ManualPaymentView> {
                             Boolean isDefaultCard, Boolean isSaveCard) {
 
         executeManualPayment(paymentData.secureHashKey, paymentData.currencyCode, paymentData.amountFormatted, paymentData.merchantId,
-                paymentData.terminalId, paymentData.customerId, ccv, expireDate, cardOwnerName, cardNumber, paymentData.receiverMail,
+                paymentData.terminalId, ccv, expireDate, cardOwnerName, cardNumber, paymentData.receiverMail,
                 isDefaultCard, isSaveCard);
 
 
@@ -37,7 +37,7 @@ class ManualPaymentPresenter extends BasePresenter<ManualPaymentView> {
 
 
     private void executeManualPayment(String secureHash, String currencyCode, String payAmount, final String merchantId, final String terminalId,
-                                      String customerId, String ccv, String expiryDate, final String cardHolder, final String cardNumber, final String receiverMail,
+                                      String ccv, String expiryDate, final String cardHolder, final String cardNumber, final String receiverMail,
                                       Boolean isDefaultCard, Boolean isSaveCard) {
         // check internet.
         if (!view.isInternetAvailable()) {
@@ -64,7 +64,7 @@ class ManualPaymentPresenter extends BasePresenter<ManualPaymentView> {
         paymentRequest.dateTimeLocalTrxn = AppUtils.getDateTimeLocalTrxn();
         paymentRequest.merchantId = merchantId;
         paymentRequest.terminalId = terminalId;
-        paymentRequest.tokenCustomerId = customerId;
+        paymentRequest.tokenCustomerId = paymentData.getVerifiedTokenCustomerId();
 
         paymentRequest.returnURL = ApiLinks.PAYMENT_LINK;
 //        paymentRequest.isDefaultCard=true;

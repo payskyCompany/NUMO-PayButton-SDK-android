@@ -6,12 +6,14 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RadioButton
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import io.paysky.paybutton.R
 import io.paysky.paybutton.data.model.response.CardItem
 import io.paysky.paybutton.ui.fragment.listcards.CardsCallback
+import io.paysky.paybutton.util.CardBrandLogo
 
 class CardsAdapter(
     val onDeleteCard: (CardItem, Int) -> Unit,
@@ -22,6 +24,7 @@ class CardsAdapter(
 
     inner class CardViewHolder(itemView: View) : ViewHolder(itemView) {
         private var itemPosition: Int = -1
+        private val cardImg: ImageView = itemView.findViewById(R.id.cardImg)
         private val maskedCardNumber: TextView =
             itemView.findViewById(R.id.masked_card_number_text_view)
         private val cardName: TextView = itemView.findViewById(R.id.card_name_textview)
@@ -44,6 +47,17 @@ class CardsAdapter(
             }
             maskedCardNumber.text = cardItem.maskedCardNumber
             cardName.text = cardItem.displayName
+            val logoRes = CardBrandLogo.forCard(cardItem)
+            cardImg.setImageResource(logoRes)
+            if (logoRes == R.drawable.ic_card) {
+                // Only the generic fallback icon keeps the accent tint; brand
+                // logos must render in their own colors.
+                cardImg.setColorFilter(
+                    ContextCompat.getColor(itemView.context, R.color.accentColor)
+                )
+            } else {
+                cardImg.clearColorFilter()
+            }
             if (cardItem.isDefaultCard) {
                 selectedItemPosition = position
                 selectCard.isChecked = true

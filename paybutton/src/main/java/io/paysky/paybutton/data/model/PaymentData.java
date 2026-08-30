@@ -25,6 +25,19 @@ public class PaymentData implements Parcelable {
 
     }
 
+    /**
+     * The customer id, but only once it has been proven valid: tokenization is
+     * enabled for the terminal and GetSessionForCustomerToken succeeded for it
+     * (customerSession is set). An unverified id must never be sent to payment
+     * APIs — the backend rejects the whole transaction for an unknown customer.
+     */
+    public String getVerifiedTokenCustomerId() {
+        if (isTokenized && customerSession != null && !customerSession.isEmpty()) {
+            return customerId;
+        }
+        return null;
+    }
+
     protected PaymentData(Parcel in) {
         merchantId = in.readString();
         terminalId = in.readString();

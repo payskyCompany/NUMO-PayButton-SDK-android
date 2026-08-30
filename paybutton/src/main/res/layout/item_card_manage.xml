@@ -17,11 +17,10 @@
         android:button="@drawable/radio_button_states" />
 
     <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/cardImg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        app:tint="@color/accentColor"
-        app:tintMode="src_in"
         app:srcCompat="@drawable/ic_card" />
 
     <LinearLayout

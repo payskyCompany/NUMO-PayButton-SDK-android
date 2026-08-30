@@ -72,6 +72,13 @@ class ManageCardsFragment : BaseFragment(), ManageCardsView {
         activity.finish()
     }
 
+    override fun onCustomerNotFound() {
+        if (!isAdded) return
+        // There are no cards to manage for an unknown customer; go back.
+        ToastUtils.showLongToast(context, getString(R.string.something_went_wrong))
+        requireActivity().onBackPressedDispatcher.onBackPressed()
+    }
+
     override fun showSavedCards(cardsLists: List<CardItem>) {
         title.visibility = View.VISIBLE
         setAsDefaultTitle.visibility = View.VISIBLE

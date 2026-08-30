@@ -46,7 +46,7 @@ class PaymentProcessingPresenter(
                     terminalId = payment.terminalId,
                     ccv = tokenizedCardParams.cvv,
                     cardId = tokenizedCardParams.TokenCardId,
-                    customerId = payment.customerId,
+                    customerId = payment.verifiedTokenCustomerId,
                     customerSessionId = payment.customerSession
                 )
             } ?: run {

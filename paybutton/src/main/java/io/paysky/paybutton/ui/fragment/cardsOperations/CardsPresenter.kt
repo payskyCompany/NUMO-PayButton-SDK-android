@@ -73,19 +73,7 @@ open class CardsPresenter<V : CardsView>(arguments: Bundle?, view: V) :
                 request,
                 object : ApiResponseListener<GetSessionResponse?> {
                     override fun onSuccess(response: GetSessionResponse?) {
-                        view.dismissProgress()
-                        if (response != null) {
-                            if (response.success) {
-                                paymentData?.customerSession = response.sessionId!!
-                                listCustomerCards()
-                            } else {
-                                view.dismissProgress()
-                                view.showToastError(response.message!!)
-                            }
-                        } else {
-                            view.dismissProgress()
-                            view.showToastError("Something went wrong")
-                        }
+                        handleGetSessionResponse(response)
                     }
 
                     override fun onFail(error: Throwable) {
@@ -156,7 +144,29 @@ open class CardsPresenter<V : CardsView>(arguments: Bundle?, view: V) :
         }
     }
 
+    private fun handleGetSessionResponse(response: GetSessionResponse?) {
+        view.dismissProgress()
+        when {
+            response == null -> view.showToastError("Something went wrong")
+            response.success && !response.sessionId.isNullOrEmpty() -> {
+                paymentData?.customerSession = response.sessionId
+                listCustomerCards()
+            }
+            response.actionCode == ACTION_CODE_CUSTOMER_NOT_FOUND ->
+                view.onCustomerNotFound()
+            else -> view.showToastError(
+                response.message ?: "Something went wrong"
+            )
+        }
+    }
+
     private fun setDefaultCardSelected() {
         cardsList.find { it.isDefaultCard }?.isSelected = true
+    }
+
+    companion object {
+        // Backend returns Success=false with this ActionCode when the
+        // customer id sent in GetSessionForCustomerToken does not exist.
+        private const val ACTION_CODE_CUSTOMER_NOT_FOUND = "01"
     }
 }

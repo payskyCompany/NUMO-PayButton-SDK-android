@@ -29,7 +29,8 @@ class PaymentApprovedPresenter extends BasePresenter<PaymentApprovedView> {
         request.terminalId = terminalId;
         request.merchantId = merchantId;
         request.transactionChannel = channelName;
-        request.externalReceiptNo = transactionId;
+        request.externalReceiptNumber = referenceNumber;
+        request.externalReceiptNo = referenceNumber;
         request.transactionId = transactionId;
         // create secure hash.
         request.secureHash = HashGenerator.encode(hashKey, request.dateTimeLocalTrxn, merchantId, terminalId);

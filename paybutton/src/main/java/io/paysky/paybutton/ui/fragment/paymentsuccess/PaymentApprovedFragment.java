@@ -160,7 +160,7 @@ public class PaymentApprovedFragment extends BaseFragment implements View.OnClic
         }
         int RECEIPT = 1;
         presenter.sendEmail(transactionData.secureHashKey, email, transactionData.terminalId, transactionData.merchantId,
-                transactionData.receiptNumber, transactionData.channelName, transactionData.rrn,
+                transactionData.receiptNumber, transactionData.channelName, transactionData.stan,
                 RECEIPT);
     }
 

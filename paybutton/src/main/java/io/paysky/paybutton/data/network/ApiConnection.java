@@ -255,14 +255,22 @@ public class ApiConnection {
         // Enhanced logging interceptor for debug mode
         // Create custom logger for better formatting
         HttpLoggingInterceptor.Logger logger = new HttpLoggingInterceptor.Logger() {
+            // Logcat drops everything past ~4K per message; JSON bodies are one long
+            // line, so split them into chunks or the tail is silently lost.
+            private static final int MAX_LOG_CHUNK = 3500;
+
             @Override
             public void log(String message) {
                 // Log each line separately for better readability
                 if (message != null && !message.trim().isEmpty()) {
                     String[] lines = message.split("\n");
                     for (String line : lines) {
-                        if (!line.trim().isEmpty()) {
-                            Log.d("ApiConnection", line);
+                        if (line.trim().isEmpty()) {
+                            continue;
+                        }
+                        for (int start = 0; start < line.length(); start += MAX_LOG_CHUNK) {
+                            int end = Math.min(line.length(), start + MAX_LOG_CHUNK);
+                            Log.d("ApiConnection", line.substring(start, end));
                         }
                     }
                 }
